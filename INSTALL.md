@@ -6,26 +6,14 @@
 ### Instalar Node.js
 - Descarga oficial: [Node.js Download](https://nodejs.org/en/download)
 
+Recomendamos seguir las instrucciones oficiales y no descargar directamente el instalador. También sugerimos reemplazar el numero de versión por --lts, como se muestra a continuación:
+
 ```bash
-# Descargar e instalar nvm:
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
-
-# in lieu of restarting the shell
-\. "$HOME/.nvm/nvm.sh"
-
 # Descargar e instalar Node.js:
 nvm install --lts
-
-# Verificar la versión the Node.js:
-node -v 
-nvm current 
-
-# Verificar la versión de npm:
-npm -v
 ```
 
 ### Instalar pnpm
-
 ```bash
 npm install -g pnpm
 pnpm install
