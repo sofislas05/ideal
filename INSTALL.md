@@ -26,4 +26,4 @@ pnpm run dev
 Para ejecutar en el local también es posible copiar y pegar en el Browser el link que se encuentra en la terminal, al lado de "Local".
 Se debe ver parecido a: http: //127.0.0.1:4321
 
-_Esta guía es efectiva para Linux y MacOS, sistemas operativos en los que fue probada._
+_Esta guía es efectiva para Linux y MacOSX, sistemas operativos en los que fue probada._
