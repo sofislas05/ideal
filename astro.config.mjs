@@ -16,6 +16,10 @@ export default defineConfig({
   devToolbar: {
     enabled: false
   },
+  server: {
+    host: '0.0.0.0', // Esto fuerza a Astro a escuchar en todas las interfaces
+    port: 4321,      // Y asegura que sea en el puerto 4321
+  },
   site: "https://ideal.fiuni.edu.py",
   build: {
     formats: ["file"],
