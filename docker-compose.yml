@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  ideal:
+    build:
+      context: .
+      # Puedes pasar la variable RUN_BRANCH como un arg de build si la necesitas en el Dockerfile
+      # args:
+      #   BUILD_BRANCH: ${RUN_BRANCH:-main}
+    container_name: ideal_dev_app # Un nombre más claro para el contenedor de desarrollo
+    ports:
+      # Mapea el puerto 4321 del contenedor al 4321 de tu máquina.
+      # Accede en http://localhost:4321
+      - "4000:4321"
+    volumes:
+      # ¡IMPORTANTE! Monta tu directorio de proyecto local en /app dentro del contenedor.
+      # Esto hace que los cambios en tu código local se reflejen en el contenedor
+      # sin necesidad de reconstruir la imagen.
+      - .:/app
+      # También, monta un volumen separado para los node_modules.
+      # Esto evita que los node_modules locales (que pueden tener binarios diferentes)
+      # pisen los que Docker instaló en la imagen. Los node_modules del contenedor
+      # vivirán en este volumen y no se copiarán al host.
+      - /app/node_modules
+
+    environment:
+      # Establece el entorno a desarrollo.
+      NODE_ENV: development
+      # Si tu aplicación Astro necesita saber la rama, puedes pasarla aquí.
+      APP_GIT_BRANCH: ${RUN_BRANCH:-main}
