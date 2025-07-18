@@ -1,6 +1,7 @@
 ---
 export const prerender = true;
 
+import BackButton from "@components/ReactComponents/BackButton"; // Import the BackButton component
 import { getCollection, getEntry } from "astro:content";
 import BlogLayout from "@layouts/BlogLayout.astro";
 import TableOfContents from "@components/TableOfContents.astro";
@@ -41,8 +42,10 @@ export async function getStaticPaths() {
       <header
         class="flex flex-col gap-y-3 justify-between items-start content-start print:absolute print:top-0 print:left-0 mb-2 md:flex-row lg:flex-row xl:flex-row"
       >
-        <div class="flex flex-col">
-          <h1 id="main-title">{post.data.title}</h1>
+      <div class="flex items-baseline gap-x-4">
+        <BackButton client:load />
+      <div class="flex flex-col">
+           <h1 id="main-title">{post.data.title}</h1>
           <div>
             <p class="text-gray-400 inline">Redactado por</p>
             {
@@ -52,7 +55,7 @@ export async function getStaticPaths() {
                     target="_blank"
                     rel="noopener noreferrer"
                     class="hover:underline text-gray-400 cursor-pointer"
-                    href={e.data.links ? e.data.links : "/"}
+                    href={typeof e.data.links === 'string' ? e.data.links : (Array.isArray(e.data.links) && e.data.links.length > 0 ? e.data.links[0] : "/")}
                   >
                     {e.data.name}
                   </a>

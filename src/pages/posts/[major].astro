@@ -20,7 +20,8 @@ export const getStaticPaths = () => {
 };
 ---
 
-<Layout title=`${majorData[0].label}` pagefinderIgnore>
-    <!-- container -->
-    <SubjectSelect majorData={majorData} client:load />
+<Layout title=`${majorData[0].label}`>
+    <div class="mx-5 my-10">
+        <SubjectSelect majorData={majorData} client:load />
+    </div>
 </Layout>
