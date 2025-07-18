@@ -1,5 +1,6 @@
 ---
 import "../styles.css";
+import "../styles/markdown-tables.css"; // Estilos específicos para tablas
 
 export interface Props {
   title: string;
@@ -46,5 +47,38 @@ import { ViewTransitions } from "astro:transitions";
   <body>
     <Header />
     <slot />
+    
+    <script is:inline>
+      // Script para detectar tablas con desbordamiento
+      if (typeof document !== 'undefined') {
+        document.addEventListener('DOMContentLoaded', function() {
+          function checkTableOverflow() {
+            const tables = document.querySelectorAll('.markdown-body table');
+            
+            tables.forEach(table => {
+              const tableWidth = table.scrollWidth;
+              const containerWidth = table.parentElement.clientWidth;
+              
+              if (tableWidth > containerWidth) {
+                table.classList.add('table-overflow');
+                table.classList.remove('table-optimize-width');
+              } else {
+                table.classList.remove('table-overflow');
+                table.classList.add('table-optimize-width');
+              }
+            });
+          }
+          
+          checkTableOverflow();
+          window.addEventListener('load', checkTableOverflow);
+          window.addEventListener('resize', checkTableOverflow);
+          window.addEventListener('beforeprint', function() {
+            document.querySelectorAll('.markdown-body table').forEach(table => {
+              table.classList.add('table-print-optimize');
+            });
+          });
+        });
+      }
+    </script>
   </body>
 </html>
