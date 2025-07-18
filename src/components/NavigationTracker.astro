@@ -1,0 +1,19 @@
+<script>
+  function updateUrlStack() {
+    // Obtiene el stack actual o crea uno nuevo si no existe.
+    const stackString = sessionStorage.getItem('urlStack');
+    const stack = stackString ? JSON.parse(stackString) : [];
+
+    const currentUrl = window.location.href;
+    const lastUrl = stack.length > 0 ? stack[stack.length - 1] : null;
+
+    // Añade la URL actual solo si es nueva (evita duplicados al recargar).
+    if (currentUrl !== lastUrl) {
+      stack.push(currentUrl);
+      sessionStorage.setItem('urlStack', JSON.stringify(stack));
+    }
+  }
+  // Ejecuta la función en la carga inicial y en cada cambio de página de Astro.
+  updateUrlStack();
+  document.addEventListener('astro:page-load', updateUrlStack);
+</script>

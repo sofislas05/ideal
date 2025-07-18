@@ -6,8 +6,10 @@ export interface Props {
   pagefinderIgnore?: boolean;
 }
 
-const { title, pagefinderIgnore = false } = Astro.props; 
+const { title, pagefinderIgnore = false} = Astro.props; 
 import Header from "@components/Header.astro";
+import NavigationTracker from '../components/NavigationTracker.astro';
+
 import { ViewTransitions } from "astro:transitions";
 ---
 
@@ -42,6 +44,7 @@ import { ViewTransitions } from "astro:transitions";
         scroll-behavior: smooth;
       }
     </style>
+    <NavigationTracker />
   </head>
   <body>
     <Header />

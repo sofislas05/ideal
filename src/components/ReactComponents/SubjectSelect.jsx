@@ -7,6 +7,8 @@ import { materiasIndu } from '../../utils/data/dataIndu';
 import { materiaCPA } from '../../utils/data/dataCpa';
 import { materiasCBI } from '../../utils/data/dataCBI';
 import ButtonSubject from './ButtonSubject';
+import BackButton from './BackButton'; // <-- 1. Importa el nuevo componente
+
 
 const SubjectSelect = ({ majorData }) => {
     // Helper para determinar el semestre por defecto según la carrera
@@ -94,9 +96,12 @@ const SubjectSelect = ({ majorData }) => {
     return (
         <div className="mx-5 xl:mx-52 2xl:mx-52 lg:my-10 flex flex-col gap-y-4 mt-2">
             {/* Título de la carrera */}
-            <h2 className="text-2xl tracking-tight font-bold">
-                {majorData[0].label}
-            </h2>
+            <div className="flex items-center gap-x-3">
+                <BackButton />
+                <h2 className="text-2xl tracking-tight font-bold">
+                    {majorData[0].label}
+                </h2>
+            </div>
             <div className='flex flex-col md:flex-col-reverse'>
 
                 {/* materias */}
