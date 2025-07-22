@@ -1,6 +1,7 @@
 ---
 export const prerender = true;
 
+import BackButton from "@components/BackButton.astro";
 import Layout from "@layouts/Layout.astro";
 // información de las majors
 import { majorOptions } from "src/utils/data/dataMajor";
@@ -22,5 +23,6 @@ export const getStaticPaths = () => {
 
 <Layout title=`${majorData[0].label}` pagefinderIgnore>
     <!-- container -->
+    <BackButton href="/" />
     <SubjectSelect majorData={majorData} client:load />
 </Layout>
