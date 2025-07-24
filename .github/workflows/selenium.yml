@@ -30,9 +30,6 @@ jobs:
       - name: Install selenium-side-runner
         run: npm install -g selenium-side-runner
 
-      - name: Clean temp folder
-        run: rm -rf /tmp/*
-
       - name: Run Selenium Tests on Chrome with clean profile
         run: |
           selenium-side-runner \
