@@ -1,0 +1,74 @@
+{
+  "id": "74385177-01b2-455a-9e25-293f48894cfa",
+  "version": "2.0",
+  "name": "ideal-tests-prod",
+  "url": "https://ideal.fiuni.edu.py/",
+  "tests": [{
+    "id": "d5c8ab56-2caf-4175-88e7-8534a956c48a",
+    "name": "barra-de-busqueda",
+    "commands": [{
+      "id": "ad7f6f9c-75b0-4828-8ffd-2528057cce59",
+      "comment": "",
+      "command": "open",
+      "target": "https://ideal.fiuni.edu.py/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9e9c5361-6dc6-4989-9ed6-d07714baf2db",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1512x945",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c2144cd3-92e5-43fe-a22f-1702efd4552c",
+      "comment": "",
+      "command": "click",
+      "target": "css=#search-bar > .text-sm",
+      "targets": [
+        ["css=#search-bar > .text-sm", "css:finder"],
+        ["xpath=//div[@id='search-bar']/span", "xpath:idRelative"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'Buscar recursos...')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "cb71df14-9f1b-49b6-90d4-ee1edebf6a70",
+      "comment": "",
+      "command": "type",
+      "target": "css=.pagefind-ui__search-input",
+      "targets": [
+        ["css=.pagefind-ui__search-input", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='search']/div/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "repaso"
+    }, {
+      "id": "e0f1ca52-3189-43d2-bc30-a9175936f3af",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Repaso Final",
+      "targets": [
+        ["linkText=Repaso Final", "linkText"],
+        ["css=.pagefind-ui__result:nth-child(1) .pagefind-ui__result-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Repaso Final')]", "xpath:link"],
+        ["xpath=//div[@id='search']/div/form/div/div/ol/li/div/p/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/posts/repaso-final-1/')]", "xpath:href"],
+        ["xpath=//p/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Repaso Final')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "70174d24-09ba-4cc2-bde9-86b5f6046598",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["d5c8ab56-2caf-4175-88e7-8534a956c48a"]
+  }],
+  "urls": ["https://ideal.fiuni.edu.py/"],
+  "plugins": []
+}

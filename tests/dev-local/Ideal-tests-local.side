@@ -1,0 +1,708 @@
+{
+  "id": "5e641802-369b-4bd7-b414-f2f63632d0bb",
+  "version": "2.0",
+  "name": "Ideal-tests",
+  "url": "http://localhost:4321/",
+  "tests": [{
+    "id": "da296394-dc6e-4f2b-b3ba-0cb3256a8710",
+    "name": "scroll-innecesario-new",
+    "commands": [{
+      "id": "87ec0025-fb7f-49dc-8868-fe8432136865",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:4321/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "87f9e2b2-05da-4a5d-b568-6010c05fca53",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1512x945",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e237fbd1-b855-4305-91e9-fc6274feec12",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flex:nth-child(3) > .flex > .font-semibold",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "093de543-8a93-49e0-b0c7-5577e35b45a2",
+      "comment": "",
+      "command": "click",
+      "target": "css=.mr-1:nth-child(4) > .bg-blue-200",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0182d876-cc84-42e2-b67d-ea4760fb9412",
+      "comment": "",
+      "command": "click",
+      "target": "css=ul:nth-child(1) .font-medium",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d42570e0-59af-418f-8392-6c03085f6d44",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flex:nth-child(1) > .text-base",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "83e3ba6e-b1f3-4e42-8046-3fec343a5155",
+      "comment": "",
+      "command": "click",
+      "target": "css=html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e30fb155-6f61-4a04-beea-65e0502b0917",
+      "comment": "",
+      "command": "executeScript",
+      "target": "return document.documentElement.scrollHeight - document.body.scrollHeight; Value: htmlBodyDiff",
+      "targets": [],
+      "value": "htmlBodyDiff"
+    }, {
+      "id": "a1a1ef70-da66-4554-97fb-b64efd3bb922",
+      "comment": "",
+      "command": "assert",
+      "target": "htmlBodyDiff",
+      "targets": [],
+      "value": "0"
+    }]
+  }, {
+    "id": "11d1c3a8-223a-41a7-b0ac-729d423c96fc",
+    "name": "back-button",
+    "commands": [{
+      "id": "2f4b5cdb-7e80-4fbc-9d9e-ba2097c95fdf",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:4321/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8ddbc0b2-5b3e-4f52-a43a-532640a38689",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1290x879",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f702340a-0fc4-4d90-bce2-811cdacd47aa",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flex:nth-child(3) > .flex > .font-semibold",
+      "targets": [
+        ["css=.flex:nth-child(3) > .flex > .font-semibold", "css:finder"],
+        ["xpath=//a[3]/span/span[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "72567d90-f350-43e2-b057-8cb53ec9b4e8",
+      "comment": "",
+      "command": "click",
+      "target": "css=ul:nth-child(4) .font-medium",
+      "targets": [
+        ["css=ul:nth-child(4) .font-medium", "css:finder"],
+        ["xpath=//ul[4]/a/div/span[2]", "xpath:position"],
+        ["xpath=//span[contains(.,'Redes de Computadoras 1')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9400318d-e6fa-4e16-bd39-eedc4fe97e90",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flex-row:nth-child(1)",
+      "targets": [
+        ["css=.flex-row:nth-child(1)", "css:finder"],
+        ["xpath=//a[contains(@href, '/posts/capa-de-red')]", "xpath:href"],
+        ["xpath=//ul/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "192f4787-8dd7-4f93-9035-1e3ff8fa37a4",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inline-flex > span",
+      "targets": [
+        ["css=.inline-flex > span", "css:finder"],
+        ["xpath=//section/header/div/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e981bc98-4c8a-4796-b96c-55f92cba12d1",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flex-shrink-0",
+      "targets": [
+        ["css=.flex-shrink-0", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "b6cf342b-e758-41ed-880c-1875a4b9f2bd",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inline-flex > span",
+      "targets": [
+        ["css=.inline-flex > span", "css:finder"],
+        ["xpath=//body/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "fe0ba539-d03f-42d9-a457-b265efb0a8c2",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flex:nth-child(3) > .flex > .font-semibold",
+      "targets": [
+        ["css=.flex:nth-child(3) > .flex > .font-semibold", "css:finder"],
+        ["xpath=//a[3]/span/span[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f34f2c47-ddfc-49f0-9e76-57c14e91d679",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Contabilidad",
+      "targets": [
+        ["linkText=Contabilidad", "linkText"],
+        ["css=ul:nth-child(2) > .bg-gray-200", "css:finder"],
+        ["xpath=//a[contains(@href, '/posts/infor-Co')]", "xpath:href"],
+        ["xpath=//ul[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Contabilidad')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8cb014df-75ee-4164-95a6-05989bfd3eb8",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flex:nth-child(1) > .flex > .hidden > .mx-1",
+      "targets": [
+        ["css=.flex:nth-child(1) > .flex > .hidden > .mx-1", "css:finder"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'Josue Vera')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "98ba82b8-d02e-48e1-ad1c-71c16dce49c5",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Estados Financieros.",
+      "targets": [
+        ["linkText=Estados Financieros.", "linkText"],
+        ["css=ul:nth-child(1) > li:nth-child(3) > .hover\\3Aunderline", "css:finder"],
+        ["xpath=(//a[contains(text(),'Estados Financieros.')])[2]", "xpath:link"],
+        ["xpath=//nav[@id='toc']/ul/li[3]/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#estados-financieros')])[2]", "xpath:href"],
+        ["xpath=//nav/ul/li[3]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c351c21c-09aa-419a-b5bc-ff0be3e0732d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inline-flex > span",
+      "targets": [
+        ["css=.inline-flex > span", "css:finder"],
+        ["xpath=//section/header/div/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8ca4634e-fb53-476e-8b97-28a48f126d06",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inline-flex > span",
+      "targets": [
+        ["css=.inline-flex > span", "css:finder"],
+        ["xpath=//body/div/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "863ddfb8-0df4-4714-845a-b8c46286d3a9",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inline-flex > span",
+      "targets": [
+        ["css=.inline-flex > span", "css:finder"],
+        ["xpath=//body/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "512669e2-8df4-4e87-986b-4302d0e3818a",
+    "name": "desbordamiento-tablas",
+    "commands": [{
+      "id": "8f0656d9-03db-4db4-90bd-7fe8092509c8",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:4321/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c4bedfde-0a90-4123-bd48-6f38e919dd17",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1512x879",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "52bea66c-a75d-4f41-a9a4-9f8324b82a92",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flex:nth-child(3) > .flex > .font-semibold",
+      "targets": [
+        ["css=.flex:nth-child(3) > .flex > .font-semibold", "css:finder"],
+        ["xpath=//a[3]/span/span[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "892b88cb-2de8-418a-9d9f-13fc3938fc90",
+      "comment": "",
+      "command": "click",
+      "target": "css=.mr-1:nth-child(4) > .bg-blue-200",
+      "targets": [
+        ["css=.mr-1:nth-child(4) > .bg-blue-200", "css:finder"],
+        ["xpath=//div[4]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'4')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4ad5c926-7796-446b-95e5-9d01271dc2b4",
+      "comment": "",
+      "command": "click",
+      "target": "css=ul:nth-child(4) .font-medium",
+      "targets": [
+        ["css=ul:nth-child(4) .font-medium", "css:finder"],
+        ["xpath=//ul[4]/a/div/span[2]", "xpath:position"],
+        ["xpath=//span[contains(.,'Redes de Computadoras 1')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c7d3bda2-243f-4263-b53d-cc888e8e3641",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flex:nth-child(9) > .text-base",
+      "targets": [
+        ["css=.flex:nth-child(9) > .text-base", "css:finder"],
+        ["xpath=//a[9]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Resumen de Exposiciones de Redes Hasta Capa de Enlace')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0d962116-0018-452e-8aa8-cc65c5b8c6ba",
+      "comment": "",
+      "command": "executeScript",
+      "target": "return document.documentElement.scrollWidth - window.innerWidth;",
+      "targets": [],
+      "value": "scrollXDiff"
+    }, {
+      "id": "7fd6851b-e208-4af6-8721-e730c646d910",
+      "comment": "",
+      "command": "assert",
+      "target": "scrollXDiff",
+      "targets": [],
+      "value": "0"
+    }]
+  }, {
+    "id": "b4e09c97-221d-48ad-abb0-35c74e3d2daa",
+    "name": "mantiene-filtro-semestre",
+    "commands": [{
+      "id": "17ef9f0d-6ef1-44db-aec7-1019fd25ed0a",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:4321/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8d080d6d-a159-4366-9d7a-5ea80386f43f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1512x945",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6e786977-1d1c-4fa4-920c-cf2eaaf33095",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flex:nth-child(3) > .flex > .font-semibold",
+      "targets": [
+        ["css=.flex:nth-child(3) > .flex > .font-semibold", "css:finder"],
+        ["xpath=//a[3]/span/span[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9327ea2d-5406-44b9-aa63-b7691f69bb87",
+      "comment": "",
+      "command": "click",
+      "target": "css=.mr-1:nth-child(4) > .bg-blue-200",
+      "targets": [
+        ["css=.mr-1:nth-child(4) > .bg-blue-200", "css:finder"],
+        ["xpath=//div[4]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'4')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "09a22361-b199-4e1b-9973-548b8dfaa75d",
+      "comment": "",
+      "command": "click",
+      "target": "css=ul:nth-child(4) .font-medium",
+      "targets": [
+        ["css=ul:nth-child(4) .font-medium", "css:finder"],
+        ["xpath=//ul[4]/a/div/span[2]", "xpath:position"],
+        ["xpath=//span[contains(.,'Redes de Computadoras 1')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "17f4e351-4d51-49a6-95b5-1457d0f97485",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flex-row:nth-child(4)",
+      "targets": [
+        ["css=.flex-row:nth-child(4)", "css:finder"],
+        ["xpath=//a[contains(@href, '/posts/modulacion-digital')]", "xpath:href"],
+        ["xpath=//a[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4b8293cd-1b95-4d50-81c3-4b81041458cb",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inline-flex > span",
+      "targets": [
+        ["css=.inline-flex > span", "css:finder"],
+        ["xpath=//section/header/div/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "92c25be1-fb87-4c75-91f5-c38472309f10",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Volver",
+      "targets": [
+        ["linkText=Volver", "linkText"],
+        ["css=.inline-flex", "css:finder"],
+        ["xpath=//a[contains(@href, '/posts/infor')]", "xpath:href"],
+        ["xpath=//body/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Volver')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "19dcf3d1-a463-42d5-a32e-89a33985746d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.mr-1:nth-child(6) > .bg-blue-200",
+      "targets": [
+        ["css=.mr-1:nth-child(6) > .bg-blue-200", "css:finder"],
+        ["xpath=//div[6]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'6')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a895d2b2-fb8a-454b-b407-b3fa84b29cc6",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Sistema de Gestión",
+      "targets": [
+        ["linkText=Sistema de Gestión", "linkText"],
+        ["css=ul:nth-child(1) > .bg-gray-200", "css:finder"],
+        ["xpath=//a[contains(@href, '/posts/infor-Sg')]", "xpath:href"],
+        ["xpath=//ul/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Sistema de Gestión')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b960745c-e6f3-4b49-9c25-2e35af285338",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inline-flex > span",
+      "targets": [
+        ["css=.inline-flex > span", "css:finder"],
+        ["xpath=//body/div/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0eb506c6-0abd-4c28-afaf-1ade9e9d6850",
+      "comment": "",
+      "command": "click",
+      "target": "css=.mr-1:nth-child(3) > .bg-blue-200",
+      "targets": [
+        ["css=.mr-1:nth-child(3) > .bg-blue-200", "css:finder"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'3')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7d0c94a5-a3b2-4c4c-8ffb-5f62684c293e",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Análisis 3",
+      "targets": [
+        ["linkText=Análisis 3", "linkText"],
+        ["css=ul:nth-child(1) > .bg-gray-200", "css:finder"],
+        ["xpath=//a[contains(@href, '/posts/infor-A3')]", "xpath:href"],
+        ["xpath=//ul/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Análisis 3')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3ef3cbc9-c466-4a23-8851-d1d0d44440db",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inline-flex > span",
+      "targets": [
+        ["css=.inline-flex > span", "css:finder"],
+        ["xpath=//body/div/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f68495a6-ab34-4049-8ee8-77c33fe308cb",
+      "comment": "",
+      "command": "click",
+      "target": "css=.mr-1:nth-child(1) > .bg-blue-200",
+      "targets": [
+        ["css=.mr-1:nth-child(1) > .bg-blue-200", "css:finder"],
+        ["xpath=//div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'1')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e3f93585-f220-4357-b2d5-9cd394ba43f4",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Fisica 1",
+      "targets": [
+        ["linkText=Fisica 1", "linkText"],
+        ["css=ul:nth-child(1) > .bg-gray-200", "css:finder"],
+        ["xpath=//a[contains(@href, '/posts/infor-F1')]", "xpath:href"],
+        ["xpath=//ul/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Fisica 1')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "32e0c554-7255-4ebc-9aa1-72dc9ca28020",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Volver",
+      "targets": [
+        ["linkText=Volver", "linkText"],
+        ["css=.inline-flex", "css:finder"],
+        ["xpath=//a[contains(@href, '/posts/infor')]", "xpath:href"],
+        ["xpath=//body/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Volver')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "585b967f-cb67-4604-b626-1ab843e8ab8b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inline-flex > span",
+      "targets": [
+        ["css=.inline-flex > span", "css:finder"],
+        ["xpath=//body/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "00111077-61f2-4437-96b0-ca4d6125669b",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Ingeniería Electromecánica",
+      "targets": [
+        ["linkText=Ingeniería Electromecánica", "linkText"],
+        ["css=.justify-between:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(@href, '/posts/electro')]", "xpath:href"],
+        ["xpath=//section/div/a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'Ingeniería Electromecánica')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e073f081-d044-4409-8aa8-0437c80d150d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.bg-blue-700",
+      "targets": [
+        ["css=.bg-blue-700", "css:finder"],
+        ["xpath=//div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'5')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d4d32b87-0a10-42a9-8c1b-b1f08b2da607",
+      "comment": "",
+      "command": "click",
+      "target": "css=.mr-1:nth-child(4) > .bg-blue-200",
+      "targets": [
+        ["css=.mr-1:nth-child(4) > .bg-blue-200", "css:finder"],
+        ["xpath=//div[4]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'8')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "571d07f9-9305-4f29-874c-c2a29df4b457",
+      "comment": "",
+      "command": "click",
+      "target": "css=ul:nth-child(1) .font-medium",
+      "targets": [
+        ["css=ul:nth-child(1) .font-medium", "css:finder"],
+        ["xpath=//span[2]", "xpath:position"],
+        ["xpath=//span[contains(.,'Metalurgia General')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7875d7f8-0f10-46b7-8bc0-fc6432dc19c4",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Volver",
+      "targets": [
+        ["linkText=Volver", "linkText"],
+        ["css=.inline-flex", "css:finder"],
+        ["xpath=//a[contains(@href, '/posts/electro')]", "xpath:href"],
+        ["xpath=//body/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Volver')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c4662832-1581-49ba-8051-4a4db804cac5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.mr-1:nth-child(2) > .bg-blue-200",
+      "targets": [
+        ["css=.mr-1:nth-child(2) > .bg-blue-200", "css:finder"],
+        ["xpath=//div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'6')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "de5fa19b-041f-417e-918e-69b540d71903",
+      "comment": "",
+      "command": "click",
+      "target": "css=.mr-1:nth-child(1) > .bg-blue-200",
+      "targets": [
+        ["css=.mr-1:nth-child(1) > .bg-blue-200", "css:finder"],
+        ["xpath=//div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'5')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "58ae6a4d-3e1f-4bef-ad1e-ee0ecb93df9f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inline-flex > span",
+      "targets": [
+        ["css=.inline-flex > span", "css:finder"],
+        ["xpath=//body/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3c18c3d5-aac0-4752-a0b2-a88422f24694",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Ingeniería Informática",
+      "targets": [
+        ["linkText=Ingeniería Informática", "linkText"],
+        ["css=.justify-between:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(@href, '/posts/infor')]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Ingeniería Informática')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6c9fc710-9b6b-4e1d-8365-a1bbe0d1318d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.mr-1:nth-child(3) > .bg-blue-200",
+      "targets": [
+        ["css=.mr-1:nth-child(3) > .bg-blue-200", "css:finder"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'3')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "12b3f9b2-0ee9-43f4-9a61-2b6e64fdd349",
+      "comment": "",
+      "command": "click",
+      "target": "css=.mr-1:nth-child(1) > .bg-blue-200",
+      "targets": [
+        ["css=.mr-1:nth-child(1) > .bg-blue-200", "css:finder"],
+        ["xpath=//div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'1')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "afa0b9d2-9690-4067-b09e-bb17ca2fd28d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inline-flex > span",
+      "targets": [
+        ["css=.inline-flex > span", "css:finder"],
+        ["xpath=//body/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "48908d1b-ed4e-42ee-9a3b-9565c678ea78",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Ingeniería Civil",
+      "targets": [
+        ["linkText=Ingeniería Civil", "linkText"],
+        ["css=.bg-gray-100:nth-child(1)", "css:finder"],
+        ["xpath=//a[contains(@href, '/posts/civil')]", "xpath:href"],
+        ["xpath=//section/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Ingeniería Civil')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d8baba85-6b99-4b47-85bb-8096e346b2fc",
+      "comment": "",
+      "command": "click",
+      "target": "css=.mr-1:nth-child(2) > .bg-blue-200",
+      "targets": [
+        ["css=.mr-1:nth-child(2) > .bg-blue-200", "css:finder"],
+        ["xpath=//div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'6')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "cbe44abf-4e9b-4e5c-90d4-385b40139c0f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.mr-1:nth-child(1) > .bg-blue-200",
+      "targets": [
+        ["css=.mr-1:nth-child(1) > .bg-blue-200", "css:finder"],
+        ["xpath=//div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'5')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2a386c64-30ac-4823-906b-58dbac07dd56",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inline-flex > span",
+      "targets": [
+        ["css=.inline-flex > span", "css:finder"],
+        ["xpath=//body/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "5273da1b-4afb-4808-88dc-eb8fc643f9c8",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["https://ideal.fiuni.edu.py/", "http://localhost:4321/"],
+  "plugins": []
+}
