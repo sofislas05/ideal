@@ -13,16 +13,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: Install Selenium Side Runner
+      - name: Install selenium-side-runner
         run: npm install -g selenium-side-runner
 
-      - name: Run Selenium Tests (dev-local & prod) on Firefox
+      - name: Check selenium-side-runner version
+        run: selenium-side-runner --version
+
+      - name: Run Selenium Tests on Firefox
         run: |
-          selenium-side-runner --browser firefox \
+          selenium-side-runner \
+            -c browserName=firefox,moz:firefoxOptions.args=["-headless"] \
             tests/dev-local/Ideal-tests-local.side \
             tests/prod/ideal-tests-prod.side
