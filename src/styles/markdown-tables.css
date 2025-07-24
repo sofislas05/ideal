@@ -1,0 +1,96 @@
+/* 
+ * Estilos para tablas en markdown
+ * Este archivo contiene exclusivamente los estilos para tablas
+ * dentro de contenido con clase .markdown-body
+ */
+
+/* Estilos base para todas las tablas */
+.markdown-body table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  display: table;  /* Usar table en lugar de block para mejor distribución */
+  width: 100%;     /* Usar el ancho completo disponible por defecto */
+  max-width: 100%;
+  margin-bottom: 1rem;
+  font-variant: tabular-nums;
+  overflow: auto;  /* Para tablas muy anchas en pantallas pequeñas */
+}
+
+.markdown-body td,
+.markdown-body th {
+  padding: 6px 13px;
+  border: 1px solid #d1d9e0;
+  word-break: normal;  /* Comportamiento normal por defecto */
+}
+
+/* Celdas de encabezado en negrita */
+.markdown-body table th {
+  font-weight: 600;
+}
+
+/* Filas alternadas con diferente color de fondo */
+.markdown-body table tr {
+  background-color: #ffffff;
+  border-top: 1px solid #d1d9e0b3;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f6f8fa;
+}
+
+/* Imágenes dentro de tablas sin fondo */
+.markdown-body table img {
+  background-color: transparent;
+}
+
+/* Solo aplicar wrapping a tablas con la clase table-overflow */
+.markdown-body table.table-overflow td,
+.markdown-body table.table-overflow th {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: calc(30vw - 20px);
+}
+
+/* Optimizar tablas pequeñas */
+.markdown-body table.table-optimize-width {
+  width: 100%;
+  table-layout: fixed;
+}
+
+/* Asegurarse que el último elemento dentro de una celda no tenga margin-bottom */
+.markdown-body table td > :last-child {
+  margin-bottom: 0;
+}
+
+/* Estilos específicos para impresión/descarga de PDF */
+@media print {
+  .markdown-body table {
+    width: 100% !important;
+    display: table !important;
+    table-layout: auto !important;
+    max-width: 100% !important;
+    page-break-inside: avoid;
+  }
+  
+  .markdown-body td,
+  .markdown-body th {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: none !important;
+  }
+  
+  .markdown-body table.table-print-optimize {
+    width: 100% !important;
+    table-layout: auto !important;
+  }
+  
+  .markdown-body table.table-print-optimize td,
+  .markdown-body table.table-print-optimize th {
+    max-width: none !important;
+  }
+}
+
+/* Ocultar la barra lateral TOC */
+.markdown-body #toc-modal {
+  display: none !important;
+}
