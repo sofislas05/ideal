@@ -1,12 +1,14 @@
 ---
 export const prerender = true;
 
+import BackButton from "@components/BackButton.astro";
 import { getCollection, getEntry } from "astro:content";
 import BlogLayout from "@layouts/BlogLayout.astro";
 import TableOfContents from "@components/TableOfContents.astro";
 import { Icon } from "astro-icon/components";
 import TableOfContentsMobile from "@components/TableOfContentsMobile.astro";
 import "@styles/docs.css";
+
 // import '@styles/post.css';
 const { slug } = Astro.params;
 if (!slug) throw new Error("Slug not found");
@@ -19,6 +21,15 @@ const authorsOfPost = authors.filter((e) => post?.data.authors?.includes(e.id));
 if (!post) throw new Error("No post found for this slug");
 
 const { Content, headings } = await post.render();
+
+// La carrera (major) está en post.data.major.discriminant
+const major = post.data.major?.discriminant || "";
+
+// La materia (subject) está en post.data.major.value.value
+const subject = post.data.major?.value?.value || "";
+
+// Construye la URL de regreso
+const backUrl = `/posts/${major}-${subject}`;
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
@@ -42,6 +53,7 @@ export async function getStaticPaths() {
         class="flex flex-col gap-y-3 justify-between items-start content-start print:absolute print:top-0 print:left-0 mb-2 md:flex-row lg:flex-row xl:flex-row"
       >
         <div class="flex flex-col">
+          <BackButton href={backUrl} />
           <h1 id="main-title">{post.data.title}</h1>
           <div>
             <p class="text-gray-400 inline">Redactado por</p>
@@ -52,7 +64,7 @@ export async function getStaticPaths() {
                     target="_blank"
                     rel="noopener noreferrer"
                     class="hover:underline text-gray-400 cursor-pointer"
-                    href={e.data.links ? e.data.links : "/"}
+                    href={Array.isArray(e.data.links) ? e.data.links[0] : (e.data.links || "/")}
                   >
                     {e.data.name}
                   </a>
