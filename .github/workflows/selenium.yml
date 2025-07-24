@@ -30,6 +30,11 @@ jobs:
       - name: Install selenium-side-runner
         run: npm install -g selenium-side-runner
 
+      - name: Clean up old Selenium profile directory
+        run: |
+          rm -rf /tmp/selenium_profile
+        # Añadimos esta línea para asegurar que el directorio esté limpio antes de la ejecución
+
       - name: Run Selenium Tests on Chrome with clean profile
         run: |
           selenium-side-runner \
