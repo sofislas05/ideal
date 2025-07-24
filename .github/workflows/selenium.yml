@@ -30,14 +30,22 @@ jobs:
       - name: Install selenium-side-runner
         run: npm install -g selenium-side-runner
 
-      - name: Clean up old Selenium profile directory
-        run: |
-          rm -rf /tmp/selenium_profile
-        # Añadimos esta línea para asegurar que el directorio esté limpio antes de la ejecución
+      # --- Primer set de tests ---
+      - name: Clean up old Selenium profile directory for dev-local tests
+        run: rm -rf /tmp/selenium_profile_dev_local # Directorio único para este set
 
-      - name: Run Selenium Tests on Chrome with clean profile
+      - name: Run Selenium Tests for Ideal-tests-local.side
         run: |
           selenium-side-runner \
-            -c '{"browserName":"chrome","goog:chromeOptions":{"args":["--headless","--disable-gpu","--no-sandbox","--user-data-dir=/tmp/selenium_profile"]}}' \
-            tests/dev-local/Ideal-tests-local.side \
+            -c '{"browserName":"chrome","goog:chromeOptions":{"args":["--headless","--disable-gpu","--no-sandbox","--user-data-dir=/tmp/selenium_profile_dev_local"]}}' \
+            tests/dev-local/Ideal-tests-local.side
+
+      # --- Segundo set de tests ---
+      - name: Clean up old Selenium profile directory for prod tests
+        run: rm -rf /tmp/selenium_profile_prod # Directorio único para este set
+
+      - name: Run Selenium Tests for ideal-tests-prod.side
+        run: |
+          selenium-side-runner \
+            -c '{"browserName":"chrome","goog:chromeOptions":{"args":["--headless","--disable-gpu","--no-sandbox","--user-data-dir=/tmp/selenium_profile_prod"]}}' \
             tests/prod/ideal-tests-prod.side
