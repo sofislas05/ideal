@@ -3,55 +3,91 @@ name: Run Selenium IDE tests on Chrome
 on:
   pull_request:
     branches:
-      - cardinal-quarter
+      - cardinal-quarter # Este workflow se ejecutará cuando haya un Pull Request a la rama 'cardinal-quarter'.
 
 jobs:
   selenium-tests:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # Elige el sistema operativo para ejecutar tus tests. Ubuntu es común y eficiente.
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Checkout repository code
+        uses: actions/checkout@v4 # Paso para obtener tu código del repositorio. Es el primer paso en casi todos los workflows.
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4 # Configura el entorno de Node.js, necesario para 'selenium-side-runner'.
         with:
-          node-version: 18
+          node-version: 18 # Se recomienda usar una versión LTS (Long Term Support) de Node.js.
 
-      - name: Install Google Chrome
+      - name: Install Google Chrome Stable
         run: |
-          sudo apt-get update
-          sudo apt-get install -y wget gnupg unzip
+          echo "Updating apt package lists..."
+          sudo apt-get update # Actualiza la lista de paquetes disponibles.
+
+          echo "Installing necessary dependencies for Chrome..."
+          sudo apt-get install -y wget gnupg unzip # Instala herramientas básicas necesarias para la instalación de Chrome.
+
+          echo "Adding Google Chrome GPG key..."
+          # Añade la clave GPG de Google para verificar la autenticidad del paquete de Chrome.
+          # Aunque 'apt-key' está deprecado, sigue siendo funcional en muchos entornos de CI.
           wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+
+          echo "Adding Google Chrome repository to sources list..."
+          # Añade el repositorio de Google Chrome a la lista de fuentes de paquetes.
           echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
-          sudo apt-get update
-          sudo apt-get install -y google-chrome-stable
+
+          echo "Updating apt package lists again to include Chrome repository..."
+          sudo apt-get update # Vuelve a actualizar la lista de paquetes para que incluya Chrome.
+
+          echo "Installing google-chrome-stable..."
+          sudo apt-get install -y google-chrome-stable # Instala la versión estable de Google Chrome.
 
       - name: Install selenium-side-runner
-        run: npm install -g selenium-side-runner
+        run: npm install -g selenium-side-runner # Instala el paquete 'selenium-side-runner' globalmente.
 
-      # --- Primer set de tests ---
-      - name: Ensure Chrome/ChromeDriver are stopped and clean profile for dev-local tests
+
+      # --- Primer Grupo de Tests: Ideal-tests-local ---
+      - name: Prepare environment for Ideal-tests-local
         run: |
-          sudo pkill -9 chrome || true         # Mata cualquier proceso de Chrome de forma agresiva
-          sudo pkill -9 chromedriver || true   # Mata cualquier proceso de ChromeDriver de forma agresiva
-          rm -rf /tmp/selenium_profile_dev_local # Elimina el directorio de perfil
+          echo "Ensuring all Chrome/ChromeDriver processes are stopped for Ideal-tests-local..."
+          # Mata de forma agresiva cualquier proceso de Chrome o ChromeDriver que pueda estar ejecutándose.
+          # '|| true' asegura que el paso no falle si no hay procesos que matar.
+          sudo pkill -9 chrome || true
+          sudo pkill -9 chromedriver || true
+
+          echo "Cleaning up user data directory: /tmp/selenium_profile_local"
+          # Elimina el directorio de perfil de usuario para asegurar un inicio limpio y evitar conflictos.
+          # Usamos un nombre de directorio único para este conjunto de tests.
+          rm -rf /tmp/selenium_profile_local
 
       - name: Run Selenium Tests for Ideal-tests-local.side
         run: |
+          echo "Executing Ideal-tests-local.side..."
+          # Ejecuta los tests de Selenium IDE para el archivo 'Ideal-tests-local.side'.
+          # -c para opciones de Chrome:
+          #   "browserName": "chrome" - Especifica el navegador.
+          #   "goog:chromeOptions": {"args": [...]} - Opciones específicas para Chrome.
+          #     "--headless": Ejecuta Chrome sin interfaz gráfica, esencial para CI.
+          #     "--disable-gpu": Deshabilita el uso de la GPU (recomendado en entornos virtuales).
+          #     "--no-sandbox": Necesario en algunos entornos de CI para evitar problemas de permisos.
+          #     "--user-data-dir=/tmp/selenium_profile_local": Usa un directorio de datos de usuario específico y único.
           selenium-side-runner \
-            -c '{"browserName":"chrome","goog:chromeOptions":{"args":["--headless","--disable-gpu","--no-sandbox","--user-data-dir=/tmp/selenium_profile_dev_local"]}}' \
+            -c '{"browserName":"chrome","goog:chromeOptions":{"args":["--headless","--disable-gpu","--no-sandbox","--user-data-dir=/tmp/selenium_profile_local"]}}' \
             tests/dev-local/Ideal-tests-local.side
 
-      # --- Segundo set de tests ---
-      - name: Ensure Chrome/ChromeDriver are stopped and clean profile for prod tests
+      # --- Segundo Grupo de Tests: ideal-tests-prod ---
+      - name: Prepare environment for ideal-tests-prod
         run: |
+          echo "Ensuring all Chrome/ChromeDriver processes are stopped for ideal-tests-prod..."
           sudo pkill -9 chrome || true
           sudo pkill -9 chromedriver || true
+
+          echo "Cleaning up user data directory: /tmp/selenium_profile_prod"
+          # Usamos un directorio de perfil diferente para este segundo conjunto de tests.
           rm -rf /tmp/selenium_profile_prod
 
       - name: Run Selenium Tests for ideal-tests-prod.side
         run: |
+          echo "Executing ideal-tests-prod.side..."
           selenium-side-runner \
             -c '{"browserName":"chrome","goog:chromeOptions":{"args":["--headless","--disable-gpu","--no-sandbox","--user-data-dir=/tmp/selenium_profile_prod"]}}' \
             tests/prod/ideal-tests-prod.side
