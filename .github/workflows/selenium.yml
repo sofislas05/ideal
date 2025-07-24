@@ -3,33 +3,28 @@ name: Run Selenium IDE tests with Dockerized Astro App
 on:
   pull_request:
     branches:
-      - cardinal-quarter # Este workflow se activa cuando hay un PR hacia 'cardinal-quarter'.
+      - cardinal-quarter
 
 jobs:
   selenium-tests:
-    runs-on: ubuntu-latest # El entorno en el que se ejecutarán los tests.
+    runs-on: ubuntu-latest # El sistema operativo para el runner de GitHub Actions.
 
     steps:
       - name: Checkout repository code
-        uses: actions/checkout@v4 # Obtiene el código de tu repositorio. En un PR, esto suele ser una combinación del HEAD de la rama base y los cambios de la rama del PR. Crucialmente, tendrá acceso al Dockerfile de la rama 'cardinal-quarter'.
+        uses: actions/checkout@v4
 
       # --- Docker Configuration for Astro App ---
       - name: Build Docker Image for Astro App
         run: |
           echo "Building Docker image for Astro application..."
-          # Este comando asume que el Dockerfile está en la raíz de tu repositorio.
-          # GitHub Actions tendrá acceso a este Dockerfile porque forma parte del código 'checked out'.
           docker build -t astro-app .
 
       - name: Run Docker Container for Astro App
         run: |
           echo "Starting Astro application Docker container in background..."
-          # Inicia el contenedor Docker.
-          # -p 4321:4321 mapea el puerto del contenedor al puerto del host del runner.
           docker run -d -p 4321:4321 --name my-astro-app astro-app
 
           echo "Waiting for Astro Docker container to be healthy on port 4321..."
-          # Espera a que la aplicación dentro del contenedor esté lista para recibir peticiones.
           for i in `seq 1 60`; do
             curl -s http://localhost:4321 > /dev/null && break
             echo "Astro app not ready yet, waiting 1 second..."
@@ -47,11 +42,14 @@ jobs:
         run: |
           echo "Updating apt package lists..."
           sudo apt-get update -y
-          echo "Installing Firefox..."
-          sudo apt-get install -y firefox-esr
+          echo "Installing Firefox (default package)..."
+          # CAMBIO AQUÍ: Usamos 'firefox' en lugar de 'firefox-esr'
+          sudo apt-get install -y firefox
 
       - name: Install selenium-side-runner globally
         run: npm install -g selenium-side-runner
+
+      # ... (el resto de los pasos para ejecutar los tests son los mismos) ...
 
       # --- START TEST SUITE 1: Ideal-tests-local ---
       - name: Prepare environment for Ideal-tests-local (Firefox)
