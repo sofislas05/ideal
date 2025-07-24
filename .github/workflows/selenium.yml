@@ -31,8 +31,11 @@ jobs:
         run: npm install -g selenium-side-runner
 
       # --- Primer set de tests ---
-      - name: Clean up old Selenium profile directory for dev-local tests
-        run: rm -rf /tmp/selenium_profile_dev_local # Directorio único para este set
+      - name: Ensure Chrome/ChromeDriver are stopped and clean profile for dev-local tests
+        run: |
+          sudo pkill -9 chrome || true         # Mata cualquier proceso de Chrome de forma agresiva
+          sudo pkill -9 chromedriver || true   # Mata cualquier proceso de ChromeDriver de forma agresiva
+          rm -rf /tmp/selenium_profile_dev_local # Elimina el directorio de perfil
 
       - name: Run Selenium Tests for Ideal-tests-local.side
         run: |
@@ -41,8 +44,11 @@ jobs:
             tests/dev-local/Ideal-tests-local.side
 
       # --- Segundo set de tests ---
-      - name: Clean up old Selenium profile directory for prod tests
-        run: rm -rf /tmp/selenium_profile_prod # Directorio único para este set
+      - name: Ensure Chrome/ChromeDriver are stopped and clean profile for prod tests
+        run: |
+          sudo pkill -9 chrome || true
+          sudo pkill -9 chromedriver || true
+          rm -rf /tmp/selenium_profile_prod
 
       - name: Run Selenium Tests for ideal-tests-prod.side
         run: |
