@@ -1,4 +1,4 @@
-name: Run Selenium IDE tests
+name: Run Selenium IDE tests on Firefox
 
 on:
   pull_request:
@@ -18,23 +18,11 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install Chrome
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y wget gnupg unzip
-          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-          echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
-          sudo apt-get update
-          sudo apt-get install -y google-chrome-stable
-
       - name: Install Selenium Side Runner
-        run: |
-          npm install -g selenium-side-runner
+        run: npm install -g selenium-side-runner
 
-      - name: Run Selenium Tests (dev-local & prod)
+      - name: Run Selenium Tests (dev-local & prod) on Firefox
         run: |
-          selenium-side-runner \
-            --capabilities browserName=chrome,goog:chromeOptions.args='["--headless","--disable-gpu","--no-sandbox"]' \
+          selenium-side-runner --browser firefox \
             tests/dev-local/Ideal-tests-local.side \
             tests/prod/ideal-tests-prod.side
-
