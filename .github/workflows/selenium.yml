@@ -1,93 +1,90 @@
-name: Run Selenium IDE tests on Chrome
+name: Run Selenium IDE tests with Dockerized Astro App
 
 on:
   pull_request:
     branches:
-      - cardinal-quarter # Este workflow se ejecutará cuando haya un Pull Request a la rama 'cardinal-quarter'.
+      - cardinal-quarter # Este workflow se activa cuando hay un PR hacia 'cardinal-quarter'.
 
 jobs:
   selenium-tests:
-    runs-on: ubuntu-latest # Elige el sistema operativo para ejecutar tus tests. Ubuntu es común y eficiente.
+    runs-on: ubuntu-latest # El entorno en el que se ejecutarán los tests.
 
     steps:
       - name: Checkout repository code
-        uses: actions/checkout@v4 # Paso para obtener tu código del repositorio. Es el primer paso en casi todos los workflows.
+        uses: actions/checkout@v4 # Obtiene el código de tu repositorio. En un PR, esto suele ser una combinación del HEAD de la rama base y los cambios de la rama del PR. Crucialmente, tendrá acceso al Dockerfile de la rama 'cardinal-quarter'.
 
+      # --- Docker Configuration for Astro App ---
+      - name: Build Docker Image for Astro App
+        run: |
+          echo "Building Docker image for Astro application..."
+          # Este comando asume que el Dockerfile está en la raíz de tu repositorio.
+          # GitHub Actions tendrá acceso a este Dockerfile porque forma parte del código 'checked out'.
+          docker build -t astro-app .
+
+      - name: Run Docker Container for Astro App
+        run: |
+          echo "Starting Astro application Docker container in background..."
+          # Inicia el contenedor Docker.
+          # -p 4321:4321 mapea el puerto del contenedor al puerto del host del runner.
+          docker run -d -p 4321:4321 --name my-astro-app astro-app
+
+          echo "Waiting for Astro Docker container to be healthy on port 4321..."
+          # Espera a que la aplicación dentro del contenedor esté lista para recibir peticiones.
+          for i in `seq 1 60`; do
+            curl -s http://localhost:4321 > /dev/null && break
+            echo "Astro app not ready yet, waiting 1 second..."
+            sleep 1
+          done
+          echo "Astro app in Docker container should be running now."
+
+      # --- Selenium and Browser Setup ---
       - name: Setup Node.js environment
-        uses: actions/setup-node@v4 # Configura el entorno de Node.js, necesario para 'selenium-side-runner'.
+        uses: actions/setup-node@v4
         with:
-          node-version: 18 # Se recomienda usar una versión LTS (Long Term Support) de Node.js.
+          node-version: 18
 
-      - name: Install Google Chrome Stable
+      - name: Install Firefox Browser
         run: |
           echo "Updating apt package lists..."
-          sudo apt-get update # Actualiza la lista de paquetes disponibles.
+          sudo apt-get update -y
+          echo "Installing Firefox..."
+          sudo apt-get install -y firefox-esr
 
-          echo "Installing necessary dependencies for Chrome..."
-          sudo apt-get install -y wget gnupg unzip # Instala herramientas básicas necesarias para la instalación de Chrome.
+      - name: Install selenium-side-runner globally
+        run: npm install -g selenium-side-runner
 
-          echo "Adding Google Chrome GPG key..."
-          # Añade la clave GPG de Google para verificar la autenticidad del paquete de Chrome.
-          # Aunque 'apt-key' está deprecado, sigue siendo funcional en muchos entornos de CI.
-          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-
-          echo "Adding Google Chrome repository to sources list..."
-          # Añade el repositorio de Google Chrome a la lista de fuentes de paquetes.
-          echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
-
-          echo "Updating apt package lists again to include Chrome repository..."
-          sudo apt-get update # Vuelve a actualizar la lista de paquetes para que incluya Chrome.
-
-          echo "Installing google-chrome-stable..."
-          sudo apt-get install -y google-chrome-stable # Instala la versión estable de Google Chrome.
-
-      - name: Install selenium-side-runner
-        run: npm install -g selenium-side-runner # Instala el paquete 'selenium-side-runner' globalmente.
-
-
-      # --- Primer Grupo de Tests: Ideal-tests-local ---
-      - name: Prepare environment for Ideal-tests-local
+      # --- START TEST SUITE 1: Ideal-tests-local ---
+      - name: Prepare environment for Ideal-tests-local (Firefox)
         run: |
-          echo "Ensuring all Chrome/ChromeDriver processes are stopped for Ideal-tests-local..."
-          # Mata de forma agresiva cualquier proceso de Chrome o ChromeDriver que pueda estar ejecutándose.
-          # '|| true' asegura que el paso no falle si no hay procesos que matar.
-          sudo pkill -9 chrome || true
-          sudo pkill -9 chromedriver || true
+          echo "Ensuring all Firefox/Geckodriver processes are stopped for Ideal-tests-local..."
+          sudo pkill -9 firefox || true
+          sudo pkill -9 geckodriver || true
+          sleep 2
 
-          echo "Cleaning up user data directory: /tmp/selenium_profile_local"
-          # Elimina el directorio de perfil de usuario para asegurar un inicio limpio y evitar conflictos.
-          # Usamos un nombre de directorio único para este conjunto de tests.
-          rm -rf /tmp/selenium_profile_local
+          echo "Cleaning up user data directory for Firefox: /tmp/firefox_profile_local"
+          rm -rf /tmp/firefox_profile_local
 
-      - name: Run Selenium Tests for Ideal-tests-local.side
+      - name: Run Selenium Tests for Ideal-tests-local.side on Firefox
         run: |
-          echo "Executing Ideal-tests-local.side..."
-          # Ejecuta los tests de Selenium IDE para el archivo 'Ideal-tests-local.side'.
-          # -c para opciones de Chrome:
-          #   "browserName": "chrome" - Especifica el navegador.
-          #   "goog:chromeOptions": {"args": [...]} - Opciones específicas para Chrome.
-          #     "--headless": Ejecuta Chrome sin interfaz gráfica, esencial para CI.
-          #     "--disable-gpu": Deshabilita el uso de la GPU (recomendado en entornos virtuales).
-          #     "--no-sandbox": Necesario en algunos entornos de CI para evitar problemas de permisos.
-          #     "--user-data-dir=/tmp/selenium_profile_local": Usa un directorio de datos de usuario específico y único.
+          echo "Executing Ideal-tests-local.side on Firefox..."
           selenium-side-runner \
-            -c '{"browserName":"chrome","goog:chromeOptions":{"args":["--headless","--disable-gpu","--no-sandbox","--user-data-dir=/tmp/selenium_profile_local"]}}' \
+            -c '{"browserName":"firefox","moz:firefoxOptions":{"args":["--headless","-profile","/tmp/firefox_profile_local"]}}' \
             tests/dev-local/Ideal-tests-local.side
 
-      # --- Segundo Grupo de Tests: ideal-tests-prod ---
-      - name: Prepare environment for ideal-tests-prod
+      # --- START TEST SUITE 2: ideal-tests-prod ---
+      - name: Prepare environment for ideal-tests-prod (Firefox)
         run: |
-          echo "Ensuring all Chrome/ChromeDriver processes are stopped for ideal-tests-prod..."
-          sudo pkill -9 chrome || true
-          sudo pkill -9 chromedriver || true
+          echo "Ensuring all Firefox/Geckodriver processes are stopped for ideal-tests-prod..."
+          sudo pkill -9 firefox || true
+          sudo pkill -9 geckodriver || true
+          sleep 2
 
-          echo "Cleaning up user data directory: /tmp/selenium_profile_prod"
-          # Usamos un directorio de perfil diferente para este segundo conjunto de tests.
-          rm -rf /tmp/selenium_profile_prod
+          echo "Cleaning up user data directory for Firefox: /tmp/firefox_profile_prod"
+          rm -rf /tmp/firefox_profile_prod
 
-      - name: Run Selenium Tests for ideal-tests-prod.side
+      - name: Run Selenium Tests for ideal-tests-prod.side on Firefox
         run: |
-          echo "Executing ideal-tests-prod.side..."
+          echo "Executing ideal-tests-prod.side on Firefox..."
           selenium-side-runner \
-            -c '{"browserName":"chrome","goog:chromeOptions":{"args":["--headless","--disable-gpu","--no-sandbox","--user-data-dir=/tmp/selenium_profile_prod"]}}' \
+            -c '{"browserName":"firefox","moz:firefoxOptions":{"args":["--headless","-profile","/tmp/firefox_profile_prod"]}}' \
             tests/prod/ideal-tests-prod.side
