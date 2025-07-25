@@ -10,17 +10,15 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      # --- SOLO el Contenedor de Selenium (Firefox) se define aquí ---
       selenium-firefox:
-        image: selenium/standalone-firefox:4.17.0-20240124
+        # --- CAMBIO CLAVE AQUÍ: Usamos una versión específica y más reciente ---
+        image: selenium/standalone-firefox:4.22.0 # O la última versión estable que encuentres en Docker Hub
         ports:
           - "4444:4444"
           - "7900:7900"
         volumes:
           - /dev/shm:/dev/shm
-        options: --shm-size=2g # Aumenta el tamaño de memoria compartida para Firefox en Docker
-        # --- healthcheck ELIMINADO de aquí ---
-        # GitHub Actions no soporta 'healthcheck' directamente en este nivel del bloque 'services'.
+        options: --shm-size=2g
 
     steps:
       - name: Checkout repository code
@@ -28,16 +26,11 @@ jobs:
 
       - name: Bring up Astro App with Docker Compose
         run: |
-          echo "Starting Astro application with Docker Compose..."
           docker compose up -d
-
-          echo "Waiting for Astro app to be healthy on localhost:4000 (mapped from container port 4321)..."
           for i in `seq 1 60`; do
             curl -s http://localhost:4000 > /dev/null && break
-            echo "Astro app not ready yet, waiting 1 second..."
             sleep 1
           done
-          echo "Astro app should be running now."
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v4
@@ -47,14 +40,11 @@ jobs:
       - name: Install selenium-side-runner globally
         run: npm install -g selenium-side-runner
 
-      # --- Pausa para asegurar que Selenium esté listo ---
       - name: Wait for Selenium Firefox service to be fully ready
         run: |
           echo "Waiting an additional 15 seconds for Selenium Firefox to stabilize..."
           sleep 15
-        # Confiamos en esta pausa para dar tiempo al contenedor de Selenium.
 
-      # --- Ejecución de Tests de Selenium IDE ---
       - name: Run Selenium Tests for Ideal-tests-local.side
         run: |
           selenium-side-runner \
