@@ -10,33 +10,38 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      # El servicio de Selenium (Firefox) permanece igual.
-      # Se ejecutará en paralelo con los pasos del job.
+      # --- SOLO el Contenedor de Selenium (Firefox) se define aquí ---
       selenium-firefox:
-        image: selenium/standalone-firefox:latest
+        image: selenium/standalone-firefox:4.17.0-20240124 # Versión específica y estable
         ports:
-          - "4444:4444"
-          - "7900:7900"
+          - "4444:4444" # Puerto para el Selenium WebDriver
+          - "7900:7900" # Opcional: Puerto VNC para ver la ejecución (comentar en producción)
         volumes:
-          - /dev/shm:/dev/shm
-        options: --shm-size=2g
+          - /dev/shm:/dev/shm # Requiere /dev/shm para rendimiento de navegador
+        options: --shm-size=2g # Aumenta el tamaño de memoria compartida para Firefox en Docker
+        # Healthcheck para asegurar que Selenium Grid esté listo
+        healthcheck:
+          test: ["CMD-SHELL", "curl -f http://localhost:4444/wd/hub/status || exit 1"]
+          interval: 5s
+          timeout: 10s
+          retries: 10
 
     steps:
       - name: Checkout repository code
         uses: actions/checkout@v4
 
-      # --- Docker Compose para la aplicación Astro ---
+      # --- Docker Compose para la aplicación Astro (AHORA SÓLO EN STEPS) ---
       - name: Bring up Astro App with Docker Compose
         run: |
           echo "Starting Astro application with Docker Compose..."
-          # Este comando levanta todos los servicios definidos en tu docker-compose.yml.
-          # -d para ejecutar en segundo plano (detached mode).
+          # docker compose up -d construirá la imagen de Astro (si el docker-compose.yml lo especifica)
+          # y levantará el contenedor Astro, con su mapeo de puertos 4000:4321.
           docker compose up -d
 
           echo "Waiting for Astro app to be healthy on localhost:4000 (mapped from container port 4321)..."
-          # Verifica el puerto del HOST (4000) que se mapea al contenedor.
           for i in `seq 1 60`; do
             curl -s http://localhost:4000 > /dev/null && break
+            echo "Astro app not ready yet, waiting 1 second..."
             sleep 1
           done
           echo "Astro app should be running now."
@@ -55,12 +60,12 @@ jobs:
         run: |
           selenium-side-runner \
             --server http://localhost:4444/wd/hub \
-            -c '{"browserName":"firefox","moz:firefoxOptions":{"args":["--headless"]}}' \
+            -c '{"browserName":"firefox"}' \
             tests/dev-local/Ideal-tests-local.side
 
       - name: Run Selenium Tests for ideal-tests-prod.side
         run: |
           selenium-side-runner \
             --server http://localhost:4444/wd/hub \
-            -c '{"browserName":"firefox","moz:firefoxOptions":{"args":["--headless"]}}' \
+            -c '{"browserName":"firefox"}' \
             tests/prod/ideal-tests-prod.side
