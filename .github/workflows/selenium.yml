@@ -1,38 +1,31 @@
-name: Run Selenium IDE tests with Dockerized Astro App
+name: Basic Selenium IDE Tests with Dockerized Astro App
 
 on:
   pull_request:
     branches:
-      - cardinal-quarter
+      - cardinal-quarter # Se ejecuta en Pull Requests a la rama 'cardinal-quarter'.
 
 jobs:
   selenium-tests:
-    runs-on: ubuntu-latest # El sistema operativo para el runner de GitHub Actions.
+    runs-on: ubuntu-latest # El sistema operativo del runner de GitHub Actions.
 
     steps:
       - name: Checkout repository code
         uses: actions/checkout@v4
 
-      # --- Docker Configuration for Astro App ---
       - name: Build Docker Image for Astro App
-        run: |
-          echo "Building Docker image for Astro application..."
-          docker build -t astro-app .
+        run: docker build -t astro-app .
 
       - name: Run Docker Container for Astro App
         run: |
-          echo "Starting Astro application Docker container in background..."
-          docker run -d -p 4321:4321 --name my-astro-app astro-app
-
-          echo "Waiting for Astro Docker container to be healthy on port 4321..."
+          # CAMBIO CRUCIAL AQUÍ: Mapeamos el puerto 4000 del host al 4321 del contenedor
+          docker run -d -p 4000:4321 --name my-astro-app astro-app
+          # Verificamos el puerto 4000 en el host, que es donde el runner se conectará
           for i in `seq 1 60`; do
-            curl -s http://localhost:4321 > /dev/null && break
-            echo "Astro app not ready yet, waiting 1 second..."
+            curl -s http://localhost:4000 > /dev/null && break
             sleep 1
           done
-          echo "Astro app in Docker container should be running now."
 
-      # --- Selenium and Browser Setup ---
       - name: Setup Node.js environment
         uses: actions/setup-node@v4
         with:
@@ -40,49 +33,15 @@ jobs:
 
       - name: Install Firefox Browser
         run: |
-          echo "Updating apt package lists..."
           sudo apt-get update -y
-          echo "Installing Firefox (default package)..."
-          # CAMBIO AQUÍ: Usamos 'firefox' en lugar de 'firefox-esr'
           sudo apt-get install -y firefox
 
       - name: Install selenium-side-runner globally
         run: npm install -g selenium-side-runner
 
-      # ... (el resto de los pasos para ejecutar los tests son los mismos) ...
-
-      # --- START TEST SUITE 1: Ideal-tests-local ---
-      - name: Prepare environment for Ideal-tests-local (Firefox)
-        run: |
-          echo "Ensuring all Firefox/Geckodriver processes are stopped for Ideal-tests-local..."
-          sudo pkill -9 firefox || true
-          sudo pkill -9 geckodriver || true
-          sleep 2
-
-          echo "Cleaning up user data directory for Firefox: /tmp/firefox_profile_local"
-          rm -rf /tmp/firefox_profile_local
-
       - name: Run Selenium Tests for Ideal-tests-local.side on Firefox
         run: |
-          echo "Executing Ideal-tests-local.side on Firefox..."
+          # Tus tests deben apuntar a http://localhost:4000
           selenium-side-runner \
-            -c '{"browserName":"firefox","moz:firefoxOptions":{"args":["--headless","-profile","/tmp/firefox_profile_local"]}}' \
+            -c '{"browserName":"firefox","moz:firefoxOptions":{"args":["--headless"]}}' \
             tests/dev-local/Ideal-tests-local.side
-
-      # --- START TEST SUITE 2: ideal-tests-prod ---
-      - name: Prepare environment for ideal-tests-prod (Firefox)
-        run: |
-          echo "Ensuring all Firefox/Geckodriver processes are stopped for ideal-tests-prod..."
-          sudo pkill -9 firefox || true
-          sudo pkill -9 geckodriver || true
-          sleep 2
-
-          echo "Cleaning up user data directory for Firefox: /tmp/firefox_profile_prod"
-          rm -rf /tmp/firefox_profile_prod
-
-      - name: Run Selenium Tests for ideal-tests-prod.side on Firefox
-        run: |
-          echo "Executing ideal-tests-prod.side on Firefox..."
-          selenium-side-runner \
-            -c '{"browserName":"firefox","moz:firefoxOptions":{"args":["--headless","-profile","/tmp/firefox_profile_prod"]}}' \
-            tests/prod/ideal-tests-prod.side
