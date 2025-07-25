@@ -11,8 +11,7 @@ jobs:
 
     services:
       selenium-firefox:
-        # --- CAMBIO CLAVE AQUÍ: Usamos una versión específica y más reciente ---
-        image: selenium/standalone-firefox:4.22.0 # O la última versión estable que encuentres en Docker Hub
+        image: selenium/standalone-firefox:4.22.0
         ports:
           - "4444:4444"
           - "7900:7900"
@@ -26,11 +25,15 @@ jobs:
 
       - name: Bring up Astro App with Docker Compose
         run: |
+          echo "Starting Astro application with Docker Compose..."
           docker compose up -d
+          echo "Waiting for Astro app to be healthy on localhost:4000 (mapped from container port 4321)..."
           for i in `seq 1 60`; do
             curl -s http://localhost:4000 > /dev/null && break
+            echo "Astro app not ready yet, waiting 1 second..."
             sleep 1
           done
+          echo "Astro app should be running now."
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v4
@@ -40,16 +43,19 @@ jobs:
       - name: Install selenium-side-runner globally
         run: npm install -g selenium-side-runner
 
+      # --- Aumentamos la pausa para dar tiempo a Selenium/Firefox ---
       - name: Wait for Selenium Firefox service to be fully ready
         run: |
-          echo "Waiting an additional 15 seconds for Selenium Firefox to stabilize..."
-          sleep 15
+          echo "Waiting an additional 30 seconds for Selenium Firefox to stabilize..."
+          sleep 30 # Aumentamos la pausa a 30 segundos
 
+      # --- Ejecución de Tests de Selenium IDE ---
       - name: Run Selenium Tests for Ideal-tests-local.side
         run: |
           selenium-side-runner \
             --server http://localhost:4444/wd/hub \
             -c '{"browserName":"firefox"}' \
+            --timeout 60000 \ # Aumentamos el timeout a 60 segundos (60000 ms)
             tests/dev-local/Ideal-tests-local.side
 
       - name: Run Selenium Tests for ideal-tests-prod.side
@@ -57,4 +63,5 @@ jobs:
           selenium-side-runner \
             --server http://localhost:4444/wd/hub \
             -c '{"browserName":"firefox"}' \
+            --timeout 60000 \ # Aumentamos el timeout a 60 segundos (60000 ms)
             tests/prod/ideal-tests-prod.side
