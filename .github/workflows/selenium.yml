@@ -43,25 +43,15 @@ jobs:
       - name: Install selenium-side-runner globally
         run: npm install -g selenium-side-runner
 
-      # --- Aumentamos la pausa para dar tiempo a Selenium/Firefox ---
       - name: Wait for Selenium Firefox service to be fully ready
         run: |
           echo "Waiting an additional 30 seconds for Selenium Firefox to stabilize..."
-          sleep 30 # Aumentamos la pausa a 30 segundos
+          sleep 30
 
-      # --- Ejecución de Tests de Selenium IDE ---
+      # --- CAMBIO CRUCIAL AQUÍ: Comando en una sola línea ---
       - name: Run Selenium Tests for Ideal-tests-local.side
-        run: |
-          selenium-side-runner \
-            --server http://localhost:4444/wd/hub \
-            -c '{"browserName":"firefox"}' \
-            --timeout 60000 \ # Aumentamos el timeout a 60 segundos (60000 ms)
-            tests/dev-local/Ideal-tests-local.side
+        run: selenium-side-runner --server http://localhost:4444/wd/hub -c '{"browserName":"firefox"}' --timeout 60000 tests/dev-local/Ideal-tests-local.side
 
+      # --- Y TAMBIÉN AQUÍ: Comando en una sola línea ---
       - name: Run Selenium Tests for ideal-tests-prod.side
-        run: |
-          selenium-side-runner \
-            --server http://localhost:4444/wd/hub \
-            -c '{"browserName":"firefox"}' \
-            --timeout 60000 \ # Aumentamos el timeout a 60 segundos (60000 ms)
-            tests/prod/ideal-tests-prod.side
+        run: selenium-side-runner --server http://localhost:4444/wd/hub -c '{"browserName":"firefox"}' --timeout 60000 tests/prod/ideal-tests-prod.side
