@@ -1,47 +1,66 @@
-name: Basic Selenium IDE Tests with Dockerized Astro App
+name: Robust Selenium IDE Tests with Docker Compose Astro App and Selenium Container
 
 on:
   pull_request:
     branches:
-      - cardinal-quarter # Se ejecuta en Pull Requests a la rama 'cardinal-quarter'.
+      - cardinal-quarter
 
 jobs:
   selenium-tests:
-    runs-on: ubuntu-latest # El sistema operativo del runner de GitHub Actions.
+    runs-on: ubuntu-latest
+
+    services:
+      # El servicio de Selenium (Firefox) permanece igual.
+      # Se ejecutará en paralelo con los pasos del job.
+      selenium-firefox:
+        image: selenium/standalone-firefox:latest
+        ports:
+          - "4444:4444"
+          - "7900:7900"
+        volumes:
+          - /dev/shm:/dev/shm
+        options: --shm-size=2g
 
     steps:
       - name: Checkout repository code
         uses: actions/checkout@v4
 
-      - name: Build Docker Image for Astro App
-        run: docker build -t astro-app .
-
-      - name: Run Docker Container for Astro App
+      # --- Docker Compose para la aplicación Astro ---
+      - name: Bring up Astro App with Docker Compose
         run: |
-          # CAMBIO CRUCIAL AQUÍ: Mapeamos el puerto 4000 del host al 4321 del contenedor
-          docker run -d -p 4000:4321 --name my-astro-app astro-app
-          # Verificamos el puerto 4000 en el host, que es donde el runner se conectará
+          echo "Starting Astro application with Docker Compose..."
+          # Este comando levanta todos los servicios definidos en tu docker-compose.yml.
+          # -d para ejecutar en segundo plano (detached mode).
+          docker compose up -d
+
+          echo "Waiting for Astro app to be healthy on localhost:4000 (mapped from container port 4321)..."
+          # Verifica el puerto del HOST (4000) que se mapea al contenedor.
           for i in `seq 1 60`; do
             curl -s http://localhost:4000 > /dev/null && break
             sleep 1
           done
+          echo "Astro app should be running now."
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: Install Firefox Browser
-        run: |
-          sudo apt-get update -y
-          sudo apt-get install -y firefox
-
       - name: Install selenium-side-runner globally
         run: npm install -g selenium-side-runner
 
-      - name: Run Selenium Tests for Ideal-tests-local.side on Firefox
+      # --- Ejecución de Tests de Selenium IDE ---
+      # Tus tests de Selenium IDE (en los archivos .side) deben apuntar a http://localhost:4000
+      - name: Run Selenium Tests for Ideal-tests-local.side
         run: |
-          # Tus tests deben apuntar a http://localhost:4000
           selenium-side-runner \
+            --server http://localhost:4444/wd/hub \
             -c '{"browserName":"firefox","moz:firefoxOptions":{"args":["--headless"]}}' \
             tests/dev-local/Ideal-tests-local.side
+
+      - name: Run Selenium Tests for ideal-tests-prod.side
+        run: |
+          selenium-side-runner \
+            --server http://localhost:4444/wd/hub \
+            -c '{"browserName":"firefox","moz:firefoxOptions":{"args":["--headless"]}}' \
+            tests/prod/ideal-tests-prod.side
