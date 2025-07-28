@@ -51,49 +51,7 @@ jobs:
       - name: Run Selenium IDE UI Tests
         continue-on-error: true  # Add this to prevent workflow failure
         run: |
-          mkdir -p /tmp/chrome-user-data
-          
-          # Crear una copia de los tests con tiempos de espera más largos
-          echo "Creando copia modificada de los tests con parámetros mejorados..."
-          mkdir -p /tmp/modified-tests
-          cp tests/dev-local/ideal-tests-local.side /tmp/modified-tests/ideal-tests-ci.side
-          
-          # Modificar los tiempos de espera directamente en el archivo .side
-          # Nota: Estos comandos pueden fallar silenciosamente si el archivo no tiene el formato esperado
-          if [ -f "/tmp/modified-tests/ideal-tests-ci.side" ]; then
-            # Intentar aumentar los tiempos de espera implícitos (depende del formato exacto del archivo)
-            sed -i 's/"timeout": [0-9]*/"timeout": 60000/g' /tmp/modified-tests/ideal-tests-ci.side 2>/dev/null || true
-          fi
-          
-          # Configuraciones Chrome con mejoras para CI
-          CHROME_OPTIONS='browserName=chrome goog:chromeOptions.args=[--no-sandbox,--disable-dev-shm-usage,--user-data-dir=/tmp/chrome-user-data,--window-size=1920,1080,--start-maximized,--incognito,--disable-application-cache]'
-          
-          # Ejecutar las pruebas por orden de fiabilidad
-          echo "Ejecutando desbordamiento-tablas..."
-          npx selenium-side-runner tests/dev-local/ideal-tests-local.side -t "desbordamiento-tablas" -c "$CHROME_OPTIONS" || echo "Test falló pero continuando"
-          
-          echo "Ejecutando mantiene-filtro-semestre..."
-          npx selenium-side-runner tests/dev-local/ideal-tests-local.side -t "mantiene-filtro-semestre" -c "$CHROME_OPTIONS" || echo "Test falló pero continuando"
-          
-          # Reiniciar Chrome para tests más problemáticos
-          pkill -f chrome || true
-          rm -rf /tmp/chrome-user-data
-          mkdir -p /tmp/chrome-user-data
-          sleep 2
-          
-          echo "Ejecutando scroll-innecesario-new..."
-          npx selenium-side-runner tests/dev-local/ideal-tests-local.side -t "scroll-innecesario-new" -c "$CHROME_OPTIONS" || echo "Test falló pero continuando"
-          
-          # Reiniciar de nuevo para el test más problemático
-          pkill -f chrome || true
-          rm -rf /tmp/chrome-user-data-backbtn
-          mkdir -p /tmp/chrome-user-data-backbtn
-          sleep 2
-          
-          # Ejecutar el test de back-button con opciones similares (sin timeouts que causan error)
-          echo "Ejecutando back-button..."
-          BACKBTN_OPTIONS='browserName=chrome goog:chromeOptions.args=[--no-sandbox,--disable-dev-shm-usage,--user-data-dir=/tmp/chrome-user-data-backbtn,--window-size=1920,1080,--start-maximized]'
-          npx selenium-side-runner tests/dev-local/ideal-tests-local.side -t "back-button" -c "$BACKBTN_OPTIONS" || echo "Test falló pero continuando"
+          pnpm run test:ui
           
           # Imprimir resumen de las pruebas
           echo "=========== RESUMEN DE PRUEBAS ==========="
