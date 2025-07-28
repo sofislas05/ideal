@@ -96,48 +96,7 @@
       "targets": [],
       "value": ""
     }, {
-      "id": "6f5ab3d1-db0d-402e-96bb-1db92c217d81",
-      "comment": "",
-      "command": "click",
-      "target": "linkText=Ingeniería Civil",
-      "targets": [
-        ["linkText=Ingeniería Civil", "linkText"],
-        ["css=.bg-gray-100:nth-child(1)", "css:finder"],
-        ["xpath=//a[contains(@href, '/posts/civil')]", "xpath:href"],
-        ["xpath=//section/div/a", "xpath:position"],
-        ["xpath=//a[contains(.,'Ingeniería Civil')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
-      "id": "639fe697-6c35-48ae-bea9-2e96bef79cfd",
-      "comment": "",
-      "command": "waitForElementVisible",
-      "target": "css=.inline-flex > span",
-      "targets": [],
-      "value": "30000"
-    }, {
-      "id": "06e001e5-ec1d-4e20-b8a1-b640ded3e467",
-      "comment": "",
-      "command": "pause",
-      "target": "",
-      "targets": [],
-      "value": "1000"
-    }, {
-      "id": "a0482a8c-f48d-484d-98ed-b6e724caf4a6",
-      "comment": "",
-      "command": "click",
-      "target": "css=.inline-flex > span",
-      "targets": [],
-      "value": ""
-    }, {
-      "id": "47911149-25b5-4094-8888-59d31b7db9a2",
-      "comment": "",
-      "command": "waitForElementVisible",
-      "target": "css=.flex:nth-child(3) > .flex > .font-semibold",
-      "targets": [],
-      "value": "30000"
-    }, {
-      "id": "dab91410-e63d-4a24-b07e-a91f73414905",
+      "id": "cab1bbe2-58a7-4fb3-9232-4943e11bc7ed",
       "comment": "",
       "command": "click",
       "target": "css=.flex:nth-child(3) > .flex > .font-semibold",
@@ -147,97 +106,56 @@
       ],
       "value": ""
     }, {
-      "id": "c2b8689c-9110-46d7-8e69-b4d91e2e5cfa",
+      "id": "b93d2050-92b6-4fc2-9fc7-21ef7c613b1b",
       "comment": "",
       "command": "click",
-      "target": "css=.mr-1:nth-child(4) > .bg-blue-200",
+      "target": "css=.mr-1:nth-child(3) > .bg-blue-200",
       "targets": [
-        ["css=.mr-1:nth-child(4) > .bg-blue-200", "css:finder"],
-        ["xpath=//div[4]/button", "xpath:position"],
-        ["xpath=//button[contains(.,'4')]", "xpath:innerText"]
+        ["css=.mr-1:nth-child(3) > .bg-blue-200", "css:finder"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'3')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
-      "id": "72dcdc6f-7f06-4900-9c09-79c59fee7df3",
+      "id": "6cb8bd62-fd92-49e1-844c-304d173cd738",
       "comment": "",
       "command": "click",
-      "target": "css=ul:nth-child(4) .font-medium",
+      "target": "linkText=Análisis 3",
       "targets": [
-        ["css=ul:nth-child(4) .font-medium", "css:finder"],
-        ["xpath=//ul[4]/a/div/span[2]", "xpath:position"],
-        ["xpath=//span[contains(.,'Redes de Computadoras 1')]", "xpath:innerText"]
+        ["linkText=Análisis 3", "linkText"],
+        ["css=ul:nth-child(1) > .bg-gray-200", "css:finder"],
+        ["xpath=//a[contains(@href, '/posts/infor-A3')]", "xpath:href"],
+        ["xpath=//ul/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Análisis 3')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
-      "id": "4fa2428d-895e-4c9d-b71c-2f2b8eef5323",
-      "comment": "",
-      "command": "waitForElementVisible",
-      "target": "css=.inline-flex > span",
-      "targets": [],
-      "value": "30000"
-    }, {
-      "id": "f957923d-0d5b-4c6d-ac2b-539d4da32d8b",
-      "comment": "",
-      "command": "pause",
-      "target": "",
-      "targets": [],
-      "value": "1000"
-    }, {
-      "id": "bdfb152f-9772-4c99-9cf8-629c164319c2",
+      "id": "2441ec5a-c894-48b8-9d9e-211156604131",
       "comment": "",
       "command": "click",
-      "target": "css=.inline-flex > span",
+      "target": "css=.flex-row:nth-child(3)",
       "targets": [
-        ["css=.inline-flex > span", "css:finder"],
-        ["xpath=//body/div/a/span", "xpath:position"],
-        ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
+        ["css=.flex-row:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(@href, '/posts/repaso-final-1')]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "b04f7e09-2b15-43ad-be79-c24d1957ef2d",
-      "comment": "",
-      "command": "waitForElementVisible",
-      "target": "css=ul:nth-child(4) .font-medium",
-      "targets": [],
-      "value": "30000"
-    }, {
-      "id": "cb04a321-843d-442c-b098-de7e7a3bddfc",
+      "id": "9479ebe1-3d47-4d64-82f2-5c7d2c504f18",
       "comment": "",
       "command": "click",
-      "target": "css=ul:nth-child(4) .font-medium",
+      "target": "linkText=Ejercicio 3",
       "targets": [
-        ["css=ul:nth-child(4) .font-medium", "css:finder"],
-        ["xpath=//ul[4]/a/div/span[2]", "xpath:position"],
-        ["xpath=//span[contains(.,'Redes de Computadoras 1')]", "xpath:innerText"]
+        ["linkText=Ejercicio 3", "linkText"],
+        ["css=ul:nth-child(1) > li:nth-child(4) > .hover\\3Aunderline", "css:finder"],
+        ["xpath=(//a[contains(text(),'Ejercicio 3')])[2]", "xpath:link"],
+        ["xpath=//nav[@id='toc']/ul/li[4]/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#ejercicio-3')])[2]", "xpath:href"],
+        ["xpath=//nav/ul/li[4]/a", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "2cbd5244-fa7a-40d9-aa74-d37c0c470550",
-      "comment": "",
-      "command": "click",
-      "target": "css=.flex:nth-child(9) > .text-base",
-      "targets": [
-        ["css=.flex:nth-child(9) > .text-base", "css:finder"],
-        ["xpath=//a[9]/span", "xpath:position"],
-        ["xpath=//span[contains(.,'Resumen de Exposiciones de Redes Hasta Capa de Enlace')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
-      "id": "a7b17e68-fa08-4343-93cc-bcca3f6d1ca8",
-      "comment": "",
-      "command": "waitForElementVisible",
-      "target": "css=.inline-flex > span",
-      "targets": [],
-      "value": "30000"
-    }, {
-      "id": "fabf121d-eb74-4037-b899-f7e5c6a0bb61",
-      "comment": "",
-      "command": "pause",
-      "target": "",
-      "targets": [],
-      "value": "1000"
-    }, {
-      "id": "9cacae60-619c-48a1-9661-f9b4c9fd303e",
+      "id": "1eb2d4de-ecea-4d65-ba62-1889b87296f7",
       "comment": "",
       "command": "click",
       "target": "css=.inline-flex > span",
@@ -248,21 +166,7 @@
       ],
       "value": ""
     }, {
-      "id": "1029e7da-8d52-41bb-b8e6-342704913433",
-      "comment": "",
-      "command": "waitForElementVisible",
-      "target": "css=.inline-flex > span",
-      "targets": [],
-      "value": "30000"
-    }, {
-      "id": "01cc578c-c1df-4a5f-9fd7-55a03420e9e0",
-      "comment": "",
-      "command": "pause",
-      "target": "",
-      "targets": [],
-      "value": "1000"
-    }, {
-      "id": "c5c1bcc5-2ae8-4b63-a7df-c150569de81f",
+      "id": "ac1b2998-b279-4771-9434-6cf8416d3841",
       "comment": "",
       "command": "click",
       "target": "css=.inline-flex > span",
@@ -273,21 +177,7 @@
       ],
       "value": ""
     }, {
-      "id": "d7bfac31-b345-439d-af58-a5b3d55db7eb",
-      "comment": "",
-      "command": "waitForElementVisible",
-      "target": "css=.inline-flex > span",
-      "targets": [],
-      "value": "30000"
-    }, {
-      "id": "7280e37f-5835-4b84-bd67-e6d1dbcf5972",
-      "comment": "",
-      "command": "pause",
-      "target": "",
-      "targets": [],
-      "value": "1000"
-    }, {
-      "id": "d8fa81ba-616b-43d7-b9da-6bb22a5f382c",
+      "id": "9544e8ae-caed-4962-9867-12b965b540a5",
       "comment": "",
       "command": "click",
       "target": "css=.inline-flex > span",
