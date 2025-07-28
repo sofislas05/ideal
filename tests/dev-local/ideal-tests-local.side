@@ -14,7 +14,7 @@
       "targets": [],
       "value": ""
     }, {
-      "id": "f7f2d557-f5a5-48e7-aaa9-1ad52dab178b",
+      "id": "8e4c30a4-8f46-4e1b-afc4-efa7689c191d",
       "comment": "",
       "command": "click",
       "target": "css=.flex:nth-child(3) > .flex > .font-semibold",
@@ -24,31 +24,29 @@
       ],
       "value": ""
     }, {
-      "id": "6bd0dca5-e510-454a-9818-3b2f58f02402",
+      "id": "e525c380-ca7e-4827-b970-6c45baa8621a",
       "comment": "",
       "command": "click",
-      "target": "css=.bg-blue-700",
+      "target": "css=.mr-1:nth-child(4) > .bg-blue-200",
       "targets": [
-        ["css=.bg-blue-700", "css:finder"],
+        ["css=.mr-1:nth-child(4) > .bg-blue-200", "css:finder"],
         ["xpath=//div[4]/button", "xpath:position"],
         ["xpath=//button[contains(.,'4')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
-      "id": "75b72b66-6f9e-417c-94e8-dc82affaaa6e",
+      "id": "99db153b-917c-4a1c-9b12-81cb548bc341",
       "comment": "",
       "command": "click",
-      "target": "linkText=Redes de Computadoras 1",
+      "target": "css=ul:nth-child(4) .font-medium",
       "targets": [
-        ["linkText=Redes de Computadoras 1", "linkText"],
-        ["css=ul:nth-child(4) > .bg-gray-200", "css:finder"],
-        ["xpath=//a[contains(@href, '/posts/infor-Rc1')]", "xpath:href"],
-        ["xpath=//ul[4]/a", "xpath:position"],
-        ["xpath=//a[contains(.,'Redes de Computadoras 1')]", "xpath:innerText"]
+        ["css=ul:nth-child(4) .font-medium", "css:finder"],
+        ["xpath=//ul[4]/a/div/span[2]", "xpath:position"],
+        ["xpath=//span[contains(.,'Redes de Computadoras 1')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
-      "id": "28c313f0-9baa-4f22-a852-fb794659012b",
+      "id": "d539d192-c4be-40ba-9f1c-4ffeea3f6bfa",
       "comment": "",
       "command": "click",
       "target": "css=.flex:nth-child(9) > .text-base",
