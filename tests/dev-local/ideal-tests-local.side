@@ -141,27 +141,6 @@
       ],
       "value": ""
     }, {
-      "id": "18112d83-a002-448e-b365-57d09526563a",
-      "comment": "",
-      "command": "waitForElementVisible",
-      "target": "linkText=Ejercicio 3",
-      "targets": [],
-      "value": "30000"
-    }, {
-      "id": "9479ebe1-3d47-4d64-82f2-5c7d2c504f18",
-      "comment": "",
-      "command": "click",
-      "target": "linkText=Ejercicio 3",
-      "targets": [
-        ["linkText=Ejercicio 3", "linkText"],
-        ["css=ul:nth-child(1) > li:nth-child(4) > .hover\\3Aunderline", "css:finder"],
-        ["xpath=(//a[contains(text(),'Ejercicio 3')])[2]", "xpath:link"],
-        ["xpath=//nav[@id='toc']/ul/li[4]/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '#ejercicio-3')])[2]", "xpath:href"],
-        ["xpath=//nav/ul/li[4]/a", "xpath:position"]
-      ],
-      "value": ""
-    }, {
       "id": "1eb2d4de-ecea-4d65-ba62-1889b87296f7",
       "comment": "",
       "command": "click",
