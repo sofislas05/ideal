@@ -39,7 +39,15 @@ jobs:
           Xvfb :99 &
           echo "DISPLAY=:99" >> $GITHUB_ENV
 
-      # Run tests with a unique user data directory for each test
+      # Start the Astro development server
+      - name: Start Astro development server
+        run: |
+          pnpm run dev &
+          # Wait for the server to start
+          echo "Waiting for server to start..."
+          npx wait-on http://localhost:4321 -t 60000
+
+      # Run tests with a unique user data directory
       - name: Run Selenium IDE UI Tests
         run: |
           mkdir -p /tmp/chrome-user-data
