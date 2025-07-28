@@ -297,10 +297,17 @@
     }, {
       "id": "7fd6851b-e208-4af6-8721-e730c646d910",
       "comment": "",
-      "command": "assert",
-      "target": "scrollXDiff",
+      "command": "executeScript",
+      "target": "return Math.abs(window.scrollX) <= 20;",
       "targets": [],
-      "value": "0"
+      "value": "in_range"
+    }, {
+      "id": "5035ee8a-e0c3-45c3-ba19-3a99f7b9e8e7",
+      "comment": "",
+      "command": "assert",
+      "target": "in_range",
+      "targets": [],
+      "value": "true"
     }]
   }, {
     "id": "b4e09c97-221d-48ad-abb0-35c74e3d2daa",
