@@ -141,6 +141,13 @@
       ],
       "value": ""
     }, {
+      "id": "18112d83-a002-448e-b365-57d09526563a",
+      "comment": "",
+      "command": "waitForElementVisible",
+      "target": "linkText=Ejercicio 3",
+      "targets": [],
+      "value": "30000"
+    }, {
       "id": "9479ebe1-3d47-4d64-82f2-5c7d2c504f18",
       "comment": "",
       "command": "click",
