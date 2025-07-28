@@ -230,6 +230,13 @@
       "targets": [],
       "value": "30000"
     }, {
+      "id": "fabf121d-eb74-4037-b899-f7e5c6a0bb61",
+      "comment": "",
+      "command": "pause",
+      "target": "",
+      "targets": [],
+      "value": "1000"
+    }, {
       "id": "9cacae60-619c-48a1-9661-f9b4c9fd303e",
       "comment": "",
       "command": "click",
@@ -248,6 +255,13 @@
       "targets": [],
       "value": "30000"
     }, {
+      "id": "01cc578c-c1df-4a5f-9fd7-55a03420e9e0",
+      "comment": "",
+      "command": "pause",
+      "target": "",
+      "targets": [],
+      "value": "1000"
+    }, {
       "id": "c5c1bcc5-2ae8-4b63-a7df-c150569de81f",
       "comment": "",
       "command": "click",
@@ -265,6 +279,13 @@
       "target": "css=.inline-flex > span",
       "targets": [],
       "value": "30000"
+    }, {
+      "id": "7280e37f-5835-4b84-bd67-e6d1dbcf5972",
+      "comment": "",
+      "command": "pause",
+      "target": "",
+      "targets": [],
+      "value": "1000"
     }, {
       "id": "d8fa81ba-616b-43d7-b9da-6bb22a5f382c",
       "comment": "",
