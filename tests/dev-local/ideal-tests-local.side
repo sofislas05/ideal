@@ -98,7 +98,7 @@
       "targets": [],
       "value": ""
     }, {
-      "id": "1f1c22a2-3d40-4ff2-990c-93621be426d9",
+      "id": "6f5ab3d1-db0d-402e-96bb-1db92c217d81",
       "comment": "",
       "command": "click",
       "target": "linkText=Ingeniería Civil",
@@ -111,7 +111,7 @@
       ],
       "value": ""
     }, {
-      "id": "5a95c0c2-1c30-4eff-a077-4d625b69203e",
+      "id": "06e001e5-ec1d-4e20-b8a1-b640ded3e467",
       "comment": "",
       "command": "click",
       "target": "css=.inline-flex > span",
@@ -122,7 +122,7 @@
       ],
       "value": ""
     }, {
-      "id": "a6a75608-3fc8-4052-8270-f40b99069196",
+      "id": "dab91410-e63d-4a24-b07e-a91f73414905",
       "comment": "",
       "command": "click",
       "target": "css=.flex:nth-child(3) > .flex > .font-semibold",
@@ -132,7 +132,7 @@
       ],
       "value": ""
     }, {
-      "id": "88b420df-2ae4-43b3-b3d1-8036780379db",
+      "id": "c2b8689c-9110-46d7-8e69-b4d91e2e5cfa",
       "comment": "",
       "command": "click",
       "target": "css=.mr-1:nth-child(4) > .bg-blue-200",
@@ -143,31 +143,7 @@
       ],
       "value": ""
     }, {
-      "id": "a9562d03-0605-4393-ab6c-c5e1a9210a5a",
-      "comment": "",
-      "command": "click",
-      "target": "linkText=Redes de Computadoras 1",
-      "targets": [
-        ["linkText=Redes de Computadoras 1", "linkText"],
-        ["css=ul:nth-child(4) > .bg-gray-200", "css:finder"],
-        ["xpath=//a[contains(@href, '/posts/infor-Rc1')]", "xpath:href"],
-        ["xpath=//ul[4]/a", "xpath:position"],
-        ["xpath=//a[contains(.,'Redes de Computadoras 1')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
-      "id": "d9917471-36f1-4996-8144-5fff51dccf80",
-      "comment": "",
-      "command": "click",
-      "target": "css=.inline-flex > span",
-      "targets": [
-        ["css=.inline-flex > span", "css:finder"],
-        ["xpath=//body/div/a/span", "xpath:position"],
-        ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
-      "id": "0c88bf59-5a91-4d97-ad03-c282243a760f",
+      "id": "72dcdc6f-7f06-4900-9c09-79c59fee7df3",
       "comment": "",
       "command": "click",
       "target": "css=ul:nth-child(4) .font-medium",
@@ -178,29 +154,7 @@
       ],
       "value": ""
     }, {
-      "id": "661d7aa6-b442-4908-9858-b4f64f0b2912",
-      "comment": "",
-      "command": "click",
-      "target": "css=.flex:nth-child(9) > .text-base",
-      "targets": [
-        ["css=.flex:nth-child(9) > .text-base", "css:finder"],
-        ["xpath=//a[9]/span", "xpath:position"],
-        ["xpath=//span[contains(.,'Resumen de Exposiciones de Redes Hasta Capa de Enlace')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
-      "id": "18809b47-59df-47e4-81d0-90d7752933e0",
-      "comment": "",
-      "command": "click",
-      "target": "css=.inline-flex > span",
-      "targets": [
-        ["css=.inline-flex > span", "css:finder"],
-        ["xpath=//section/header/div/a/span", "xpath:position"],
-        ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
-      "id": "366e0326-ef5e-4230-8f30-076558f0262a",
+      "id": "bdfb152f-9772-4c99-9cf8-629c164319c2",
       "comment": "",
       "command": "click",
       "target": "css=.inline-flex > span",
@@ -211,7 +165,51 @@
       ],
       "value": ""
     }, {
-      "id": "d00dadde-af2a-42b1-a08a-d1447b4532b7",
+      "id": "cb04a321-843d-442c-b098-de7e7a3bddfc",
+      "comment": "",
+      "command": "click",
+      "target": "css=ul:nth-child(4) .font-medium",
+      "targets": [
+        ["css=ul:nth-child(4) .font-medium", "css:finder"],
+        ["xpath=//ul[4]/a/div/span[2]", "xpath:position"],
+        ["xpath=//span[contains(.,'Redes de Computadoras 1')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2cbd5244-fa7a-40d9-aa74-d37c0c470550",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flex:nth-child(9) > .text-base",
+      "targets": [
+        ["css=.flex:nth-child(9) > .text-base", "css:finder"],
+        ["xpath=//a[9]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Resumen de Exposiciones de Redes Hasta Capa de Enlace')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9cacae60-619c-48a1-9661-f9b4c9fd303e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inline-flex > span",
+      "targets": [
+        ["css=.inline-flex > span", "css:finder"],
+        ["xpath=//section/header/div/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c5c1bcc5-2ae8-4b63-a7df-c150569de81f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inline-flex > span",
+      "targets": [
+        ["css=.inline-flex > span", "css:finder"],
+        ["xpath=//body/div/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d8fa81ba-616b-43d7-b9da-6bb22a5f382c",
       "comment": "",
       "command": "click",
       "target": "css=.inline-flex > span",
