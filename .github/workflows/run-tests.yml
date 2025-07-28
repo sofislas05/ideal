@@ -44,4 +44,4 @@ jobs:
         run: |
           mkdir -p /tmp/chrome-user-data
           CHROME_OPTIONS='browserName=chrome goog:chromeOptions.args=[--headless,--no-sandbox,--disable-dev-shm-usage,--disable-gpu,--user-data-dir=/tmp/chrome-user-data]'
-          npx selenium-side-runner tests/dev-local/ideal-tests-local.side -c "$CHROME_OPTIONS" --parallel 1
+          npx selenium-side-runner tests/dev-local/ideal-tests-local.side -c "$CHROME_OPTIONS"
