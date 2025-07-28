@@ -166,6 +166,13 @@
       "targets": [],
       "value": "30000"
     }, {
+      "id": "044de621-5a5b-4699-b884-2e5e1640fa2f",
+      "comment": "",
+      "command": "pause",
+      "target": "",
+      "targets": [],
+      "value": "500"
+    }, {
       "id": "bdfb152f-9772-4c99-9cf8-629c164319c2",
       "comment": "",
       "command": "click",
