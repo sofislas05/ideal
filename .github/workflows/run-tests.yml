@@ -51,7 +51,8 @@ jobs:
       - name: Run Selenium IDE UI Tests
         run: |
           mkdir -p /tmp/chrome-user-data
-          CHROME_OPTIONS='browserName=chrome goog:chromeOptions.args=[--headless,--no-sandbox,--disable-dev-shm-usage,--disable-gpu,--user-data-dir=/tmp/chrome-user-data,--window-size=1920,1080]'
+          # Remove the --headless flag
+          CHROME_OPTIONS='browserName=chrome goog:chromeOptions.args=[--no-sandbox,--disable-dev-shm-usage,--user-data-dir=/tmp/chrome-user-data,--window-size=1920,1080]'
           
           # Run the tests that work first
           echo "Running scroll-innecesario-new test..."
@@ -62,7 +63,6 @@ jobs:
           
           # Then add additional debugging for problematic tests
           echo "Running back-button test with extended timeouts..."
-          CHROME_OPTIONS='browserName=chrome goog:chromeOptions.args=[--headless,--no-sandbox,--disable-dev-shm-usage,--disable-gpu,--user-data-dir=/tmp/chrome-user-data,--window-size=1920,1080]'
           npx selenium-side-runner tests/dev-local/ideal-tests-local.side -t "back-button" -c "$CHROME_OPTIONS" --timeout-element=30000 || echo "Test failed but continuing"
           
           echo "Running desbordamiento-tablas test..."
