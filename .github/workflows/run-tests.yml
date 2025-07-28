@@ -32,102 +32,81 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y google-chrome-stable
 
-      # Set up a virtual display for Chrome with large resolution
+      # Set up a virtual display for Chrome
       - name: Set up virtual display
         run: |
           sudo apt-get install -y xvfb
-          # Usar una resolución grande y explícita (1920x1080 con profundidad de color 24)
-          Xvfb :99 -screen 0 1920x1080x24 &
+          Xvfb :99 &
           echo "DISPLAY=:99" >> $GITHUB_ENV
-          
-          # Verificar que la pantalla virtual esté configurada correctamente
-          sleep 3
-          DISPLAY=:99 xdpyinfo | grep dimensions || echo "⚠️ No se pudo verificar la dimensión de la pantalla"
 
+      # Start the Astro development server
       - name: Start Astro development server
         run: |
-          # Matar cualquier proceso previo que pudiera estar usando el puerto 4321
-          lsof -t -i:4321 | xargs kill -9 2>/dev/null || true
-          
-          # Iniciar el servidor con más memoria
-          NODE_OPTIONS=--max_old_space_size=4096 pnpm run dev &
-          
-          # Esperar a que el servidor esté listo
-          echo "Esperando a que el servidor inicie..."
-          npx wait-on http://localhost:4321 -t 90000
-          
-          # Verificar que el servidor responda correctamente
-          curl -s http://localhost:4321 | grep -q "<html" && echo "✅ Servidor iniciado correctamente" || echo "⚠️ El servidor no respondió con HTML válido"
+          pnpm run dev &
+          # Wait for the server to start
+          echo "Waiting for server to start..."
+          npx wait-on http://localhost:4321 -t 60000
 
-      # Ejecutar pruebas con configuración robusta
+      # Run tests with a unique user data directory
       - name: Run Selenium IDE UI Tests
         continue-on-error: true  # Add this to prevent workflow failure
         run: |
-          # Asegurarse de tener suficiente memoria para las pruebas
-          export NODE_OPTIONS=--max_old_space_size=4096
-          
-          # Crear directorio para datos del usuario
           mkdir -p /tmp/chrome-user-data
           
-          # Opciones de Chrome más robustas
-          CHROME_OPTIONS='browserName=chrome goog:chromeOptions.args=[--no-sandbox,--disable-dev-shm-usage,--user-data-dir=/tmp/chrome-user-data,--window-size=1920,1080,--start-maximized,--disable-gpu,--incognito,--disable-application-cache]'
-          
-          # Crear una copia de los tests con timeouts extendidos
-          echo "Creando copia modificada de tests con tiempos de espera extendidos..."
+          # Crear una copia de los tests con tiempos de espera más largos
+          echo "Creando copia modificada de los tests con parámetros mejorados..."
           mkdir -p /tmp/modified-tests
           cp tests/dev-local/ideal-tests-local.side /tmp/modified-tests/ideal-tests-ci.side
           
-          # Pausas más largas entre comandos
-          echo "Ejecutando tests más fiables primero..."
+          # Modificar los tiempos de espera directamente en el archivo .side
+          # Nota: Estos comandos pueden fallar silenciosamente si el archivo no tiene el formato esperado
+          if [ -f "/tmp/modified-tests/ideal-tests-ci.side" ]; then
+            # Intentar aumentar los tiempos de espera implícitos (depende del formato exacto del archivo)
+            sed -i 's/"timeout": [0-9]*/"timeout": 60000/g' /tmp/modified-tests/ideal-tests-ci.side 2>/dev/null || true
+          fi
           
-          # Verificar que el servidor sigue activo
-          curl -s http://localhost:4321 > /dev/null || (echo "El servidor se cayó, reiniciando..." && pnpm run dev &)
-          npx wait-on http://localhost:4321 -t 30000
+          # Configuraciones Chrome con mejoras para CI
+          CHROME_OPTIONS='browserName=chrome goog:chromeOptions.args=[--no-sandbox,--disable-dev-shm-usage,--user-data-dir=/tmp/chrome-user-data,--window-size=1920,1080,--start-maximized,--incognito,--disable-application-cache]'
           
-          # Ejecutar test de desbordamiento-tablas (fiable)
-          echo "Ejecutando test desbordamiento-tablas..."
-          npx selenium-side-runner tests/dev-local/ideal-tests-local.side -t "desbordamiento-tablas" -c "$CHROME_OPTIONS" --timeout-element=60000 --timeout-pageLoad=60000 || echo "Test falló pero continuando"
+          # Ejecutar las pruebas por orden de fiabilidad
+          echo "Ejecutando desbordamiento-tablas..."
+          npx selenium-side-runner tests/dev-local/ideal-tests-local.side -t "desbordamiento-tablas" -c "$CHROME_OPTIONS" || echo "Test falló pero continuando"
           
-          # Reiniciar Chrome entre tests
+          echo "Ejecutando mantiene-filtro-semestre..."
+          npx selenium-side-runner tests/dev-local/ideal-tests-local.side -t "mantiene-filtro-semestre" -c "$CHROME_OPTIONS" || echo "Test falló pero continuando"
+          
+          # Reiniciar Chrome para tests más problemáticos
           pkill -f chrome || true
           rm -rf /tmp/chrome-user-data
           mkdir -p /tmp/chrome-user-data
-          sleep 3
+          sleep 2
           
-          # Ejecutar test de mantiene-filtro-semestre (fiable)
-          echo "Ejecutando test mantiene-filtro-semestre..."
-          npx selenium-side-runner tests/dev-local/ideal-tests-local.side -t "mantiene-filtro-semestre" -c "$CHROME_OPTIONS" --timeout-element=60000 --timeout-pageLoad=60000 || echo "Test falló pero continuando"
+          echo "Ejecutando scroll-innecesario-new..."
+          npx selenium-side-runner tests/dev-local/ideal-tests-local.side -t "scroll-innecesario-new" -c "$CHROME_OPTIONS" || echo "Test falló pero continuando"
           
-          # Tests más problemáticos con tiempos extendidos
-          
-          # Reiniciar Chrome y el servidor para tests problemáticos
+          # Reiniciar de nuevo para el test más problemático
           pkill -f chrome || true
-          rm -rf /tmp/chrome-user-data-prob
-          mkdir -p /tmp/chrome-user-data-prob
-          sleep 3
+          rm -rf /tmp/chrome-user-data-backbtn
+          mkdir -p /tmp/chrome-user-data-backbtn
+          sleep 2
           
-          # Verificar y reiniciar el servidor
-          curl -s http://localhost:4321 > /dev/null || (echo "El servidor se cayó, reiniciando..." && pnpm run dev &)
-          npx wait-on http://localhost:4321 -t 30000
+          # Ejecutar el test de back-button con opciones similares (sin timeouts que causan error)
+          echo "Ejecutando back-button..."
+          BACKBTN_OPTIONS='browserName=chrome goog:chromeOptions.args=[--no-sandbox,--disable-dev-shm-usage,--user-data-dir=/tmp/chrome-user-data-backbtn,--window-size=1920,1080,--start-maximized]'
+          npx selenium-side-runner tests/dev-local/ideal-tests-local.side -t "back-button" -c "$BACKBTN_OPTIONS" || echo "Test falló pero continuando"
           
-          echo "Ejecutando test scroll-innecesario-new con timeouts extendidos..."
-          PROBLEM_OPTIONS='browserName=chrome goog:chromeOptions.args=[--no-sandbox,--disable-dev-shm-usage,--user-data-dir=/tmp/chrome-user-data-prob,--window-size=1920,1080,--start-maximized,--incognito,--disable-application-cache]'
-          npx selenium-side-runner tests/dev-local/ideal-tests-local.side -t "scroll-innecesario-new" -c "$PROBLEM_OPTIONS" --timeout-element=120000 --timeout-pageLoad=120000 || echo "Test falló pero continuando"
-          
-          # Reiniciar Chrome entre tests
-          pkill -f chrome || true
-          rm -rf /tmp/chrome-user-data-btn
-          mkdir -p /tmp/chrome-user-data-btn
-          sleep 3
-          
-          # Verificar y reiniciar el servidor
-          curl -s http://localhost:4321 > /dev/null || (echo "El servidor se cayó, reiniciando..." && pnpm run dev &)
-          npx wait-on http://localhost:4321 -t 30000
-          
-          echo "Ejecutando test back-button con timeouts extendidos..."
-          BACKBTN_OPTIONS='browserName=chrome goog:chromeOptions.args=[--no-sandbox,--disable-dev-shm-usage,--user-data-dir=/tmp/chrome-user-data-btn,--window-size=1920,1080,--start-maximized,--incognito,--disable-application-cache]'
-          npx selenium-side-runner tests/dev-local/ideal-tests-local.side -t "back-button" -c "$BACKBTN_OPTIONS" --timeout-element=120000 --timeout-pageLoad=120000 || echo "Test falló pero continuando"
-
+          # Imprimir resumen de las pruebas
           echo "=========== RESUMEN DE PRUEBAS ==========="
           echo "Pruebas ejecutadas. Ver logs para detalles."
           
+          # Mostrar versión de Chrome y otros detalles del entorno
+          echo ""
+          echo "Versión de Chrome:"
+          google-chrome --version
+          
+          # Mostrar información del servidor
+          echo ""
+          echo "Estado del servidor:"
+          curl -s -o /dev/null -w "%{http_code}" http://localhost:4321 || echo "Servidor no responde"
+          echo ""
+          echo "================================================"
