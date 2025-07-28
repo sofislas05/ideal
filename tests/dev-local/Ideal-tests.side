@@ -7,83 +7,68 @@
     "id": "da296394-dc6e-4f2b-b3ba-0cb3256a8710",
     "name": "scroll-innecesario-new",
     "commands": [{
-      "id": "01caa680-659a-4565-9b3f-489627b4f2da",
+      "id": "87ec0025-fb7f-49dc-8868-fe8432136865",
       "comment": "",
       "command": "open",
       "target": "http://localhost:4321/",
       "targets": [],
       "value": ""
     }, {
-      "id": "bf12b623-b33a-4058-ac15-0e2681800470",
+      "id": "87f9e2b2-05da-4a5d-b568-6010c05fca53",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1512x945",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e237fbd1-b855-4305-91e9-fc6274feec12",
       "comment": "",
       "command": "click",
       "target": "css=.flex:nth-child(3) > .flex > .font-semibold",
-      "targets": [
-        ["css=.flex:nth-child(3) > .flex > .font-semibold", "css:finder"],
-        ["xpath=//a[3]/span/span[2]", "xpath:position"]
-      ],
+      "targets": [],
       "value": ""
     }, {
-      "id": "abab5640-9768-4d86-9d94-0fd407a177ce",
+      "id": "093de543-8a93-49e0-b0c7-5577e35b45a2",
       "comment": "",
       "command": "click",
       "target": "css=.mr-1:nth-child(4) > .bg-blue-200",
-      "targets": [
-        ["css=.mr-1:nth-child(4) > .bg-blue-200", "css:finder"],
-        ["xpath=//div[4]/button", "xpath:position"],
-        ["xpath=//button[contains(.,'4')]", "xpath:innerText"]
-      ],
+      "targets": [],
       "value": ""
     }, {
-      "id": "abab8106-0a7c-4968-9004-3cbb8a383f85",
+      "id": "0182d876-cc84-42e2-b67d-ea4760fb9412",
       "comment": "",
       "command": "click",
-      "target": "css=ul:nth-child(4) .font-medium",
-      "targets": [
-        ["css=ul:nth-child(4) .font-medium", "css:finder"],
-        ["xpath=//ul[4]/a/div/span[2]", "xpath:position"],
-        ["xpath=//span[contains(.,'Redes de Computadoras 1')]", "xpath:innerText"]
-      ],
+      "target": "css=ul:nth-child(1) .font-medium",
+      "targets": [],
       "value": ""
     }, {
-      "id": "1a4f114a-e31e-4cc8-9771-ffbc75bbbbc8",
+      "id": "d42570e0-59af-418f-8392-6c03085f6d44",
       "comment": "",
       "command": "click",
-      "target": "css=.flex:nth-child(9) > .text-base",
-      "targets": [
-        ["css=.flex:nth-child(9) > .text-base", "css:finder"],
-        ["xpath=//a[9]/span", "xpath:position"],
-        ["xpath=//span[contains(.,'Resumen de Exposiciones de Redes Hasta Capa de Enlace')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
-      "id": "596a4f98-f7c6-424c-ab23-839f811c82d0",
-      "comment": "",
-      "command": "executeScript",
-      "target": "window.scrollTo(0, document.body.scrollHeight);",
+      "target": "css=.flex:nth-child(1) > .text-base",
       "targets": [],
       "value": ""
     }, {
-      "id": "9fe88232-6070-4131-bfff-dc6fdca88129",
+      "id": "83e3ba6e-b1f3-4e42-8046-3fec343a5155",
       "comment": "",
-      "command": "waitForElementVisible",
-      "target": "css=body > a",
+      "command": "click",
+      "target": "css=html",
       "targets": [],
-      "value": "30000"
+      "value": ""
     }, {
-      "id": "12c1038f-4534-4513-bb9d-42c7fd7fdcb6",
+      "id": "e30fb155-6f61-4a04-beea-65e0502b0917",
       "comment": "",
       "command": "executeScript",
-      "target": "var el = document.querySelector('body > a'); if (el) {   var computedMarginTop = parseFloat(window.getComputedStyle(el).marginTop);   if (computedMarginTop >= 0 && computedMarginTop <= 10) {     return 'in_range';   } else {     return 'out_of_range';  } } return 'ELEMENTO_NO_ENCONTRADO_O_NO_VISIBLE';",
+      "target": "return document.documentElement.scrollHeight - document.body.scrollHeight; Value: htmlBodyDiff",
       "targets": [],
-      "value": "rangeCheckResult"
+      "value": "htmlBodyDiff"
     }, {
-      "id": "0f9c1b18-818d-4535-838a-b4d9c463c05d",
+      "id": "a1a1ef70-da66-4554-97fb-b64efd3bb922",
       "comment": "",
       "command": "assert",
-      "target": "rangeCheckResult",
+      "target": "htmlBodyDiff",
       "targets": [],
-      "value": "in_range"
+      "value": "0"
     }]
   }, {
     "id": "11d1c3a8-223a-41a7-b0ac-729d423c96fc",

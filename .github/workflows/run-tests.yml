@@ -1,0 +1,30 @@
+name: Run UI Tests on Pull Request
+on:
+  pull_request:
+    branches:
+      - cardinal-quarter
+
+jobs:
+  test_ui:
+    runs-on: ubuntu-latest # El runner (máquina virtual) de GitHub Actions
+
+    steps:
+      - name: Checkout repository # Paso 1: Clona el repositorio
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js and pnpm # Paso 2: Configura Node.js y habilita pnpm
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20 # Usa la versión de Node.js que tu proyecto necesita
+          cache: 'pnpm' # Habilita el cacheo de dependencias de pnpm para builds más rápidos
+
+      - name: Install pnpm globally # Paso 3: Instala pnpm globalmente en el runner
+        run: npm install -g pnpm
+
+      - name: Install project dependencies # Paso 4: Instala las dependencias del proyecto
+        run: pnpm install --frozen-lockfile 
+
+      - name: Run Selenium IDE UI Tests # Paso 5: Ejecuta tus tests de UI
+        # Llama al script 'test:ui' definido en tu package.json
+        run: pnpm run test:ui
+
