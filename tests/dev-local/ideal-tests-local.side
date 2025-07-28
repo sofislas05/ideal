@@ -14,7 +14,7 @@
       "targets": [],
       "value": ""
     }, {
-      "id": "bf12b623-b33a-4058-ac15-0e2681800470",
+      "id": "f7f2d557-f5a5-48e7-aaa9-1ad52dab178b",
       "comment": "",
       "command": "click",
       "target": "css=.flex:nth-child(3) > .flex > .font-semibold",
@@ -24,29 +24,31 @@
       ],
       "value": ""
     }, {
-      "id": "abab5640-9768-4d86-9d94-0fd407a177ce",
+      "id": "6bd0dca5-e510-454a-9818-3b2f58f02402",
       "comment": "",
       "command": "click",
-      "target": "css=.mr-1:nth-child(4) > .bg-blue-200",
+      "target": "css=.bg-blue-700",
       "targets": [
-        ["css=.mr-1:nth-child(4) > .bg-blue-200", "css:finder"],
+        ["css=.bg-blue-700", "css:finder"],
         ["xpath=//div[4]/button", "xpath:position"],
         ["xpath=//button[contains(.,'4')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
-      "id": "abab8106-0a7c-4968-9004-3cbb8a383f85",
+      "id": "75b72b66-6f9e-417c-94e8-dc82affaaa6e",
       "comment": "",
       "command": "click",
-      "target": "css=ul:nth-child(4) .font-medium",
+      "target": "linkText=Redes de Computadoras 1",
       "targets": [
-        ["css=ul:nth-child(4) .font-medium", "css:finder"],
-        ["xpath=//ul[4]/a/div/span[2]", "xpath:position"],
-        ["xpath=//span[contains(.,'Redes de Computadoras 1')]", "xpath:innerText"]
+        ["linkText=Redes de Computadoras 1", "linkText"],
+        ["css=ul:nth-child(4) > .bg-gray-200", "css:finder"],
+        ["xpath=//a[contains(@href, '/posts/infor-Rc1')]", "xpath:href"],
+        ["xpath=//ul[4]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Redes de Computadoras 1')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
-      "id": "1a4f114a-e31e-4cc8-9771-ffbc75bbbbc8",
+      "id": "28c313f0-9baa-4f22-a852-fb794659012b",
       "comment": "",
       "command": "click",
       "target": "css=.flex:nth-child(9) > .text-base",
@@ -93,13 +95,6 @@
       "comment": "",
       "command": "open",
       "target": "http://localhost:4321/",
-      "targets": [],
-      "value": ""
-    }, {
-      "id": "663d23a5-7fd8-47bb-a136-31869708bd71",
-      "comment": "",
-      "command": "setWindowSize",
-      "target": "1512x945",
       "targets": [],
       "value": ""
     }, {
@@ -238,13 +233,6 @@
       "targets": [],
       "value": ""
     }, {
-      "id": "c4bedfde-0a90-4123-bd48-6f38e919dd17",
-      "comment": "",
-      "command": "setWindowSize",
-      "target": "1512x879",
-      "targets": [],
-      "value": ""
-    }, {
       "id": "52bea66c-a75d-4f41-a9a4-9f8324b82a92",
       "comment": "",
       "command": "click",
@@ -317,13 +305,6 @@
       "comment": "",
       "command": "open",
       "target": "http://localhost:4321/",
-      "targets": [],
-      "value": ""
-    }, {
-      "id": "203a2cf8-39d9-4ddd-a8a0-f218e66c6d34",
-      "comment": "",
-      "command": "setWindowSize",
-      "target": "1512x945",
       "targets": [],
       "value": ""
     }, {
