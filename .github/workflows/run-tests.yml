@@ -16,7 +16,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 8  # Specify your pnpm version here
+          version: 8
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -32,5 +32,16 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y google-chrome-stable
 
+      # Set up a virtual display for Chrome
+      - name: Set up virtual display
+        run: |
+          sudo apt-get install -y xvfb
+          Xvfb :99 &
+          echo "DISPLAY=:99" >> $GITHUB_ENV
+
+      # Run tests with a unique user data directory for each test
       - name: Run Selenium IDE UI Tests
-        run: pnpm run test:ui
+        run: |
+          mkdir -p /tmp/chrome-user-data
+          CHROME_OPTIONS='browserName=chrome goog:chromeOptions.args=[--headless,--no-sandbox,--disable-dev-shm-usage,--disable-gpu,--user-data-dir=/tmp/chrome-user-data]'
+          npx selenium-side-runner tests/dev-local/ideal-tests-local.side -c "$CHROME_OPTIONS" --parallel 1
