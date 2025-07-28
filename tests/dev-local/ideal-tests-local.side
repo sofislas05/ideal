@@ -96,7 +96,7 @@
       "targets": [],
       "value": ""
     }, {
-      "id": "cab1bbe2-58a7-4fb3-9232-4943e11bc7ed",
+      "id": "5a4c4089-78d4-48f5-9123-88a2d6a4fcf1",
       "comment": "",
       "command": "click",
       "target": "css=.flex:nth-child(3) > .flex > .font-semibold",
@@ -106,7 +106,7 @@
       ],
       "value": ""
     }, {
-      "id": "b93d2050-92b6-4fc2-9fc7-21ef7c613b1b",
+      "id": "ea4db822-d284-4e83-9bda-33f9e2565b0e",
       "comment": "",
       "command": "click",
       "target": "css=.mr-1:nth-child(3) > .bg-blue-200",
@@ -117,7 +117,7 @@
       ],
       "value": ""
     }, {
-      "id": "6cb8bd62-fd92-49e1-844c-304d173cd738",
+      "id": "674b1528-ebb9-451b-a1db-21093023cb29",
       "comment": "",
       "command": "click",
       "target": "linkText=Análisis 3",
@@ -130,7 +130,7 @@
       ],
       "value": ""
     }, {
-      "id": "2441ec5a-c894-48b8-9d9e-211156604131",
+      "id": "db261a05-10d2-43d4-8bde-667df8081f97",
       "comment": "",
       "command": "click",
       "target": "css=.flex-row:nth-child(3)",
@@ -141,14 +141,14 @@
       ],
       "value": ""
     }, {
-      "id": "5c73807a-0afd-4c4b-a1a1-01171b45e9d9",
+      "id": "c4bc0bd2-54df-4eb7-b58f-2bb94317a485",
       "comment": "",
       "command": "waitForElementVisible",
       "target": "css=.inline-flex > span",
       "targets": [],
       "value": "30000"
     }, {
-      "id": "1eb2d4de-ecea-4d65-ba62-1889b87296f7",
+      "id": "e860a865-06ca-40b9-a7d8-fab4e202358e",
       "comment": "",
       "command": "click",
       "target": "css=.inline-flex > span",
@@ -159,21 +159,28 @@
       ],
       "value": ""
     }, {
-      "id": "7ee223cc-6888-47c4-93e7-f596d849d4b5",
+      "id": "f350b018-5ca6-41dd-8359-f04d978a1065",
+      "comment": "",
+      "command": "pause",
+      "target": "",
+      "targets": [],
+      "value": "3000"
+    }, {
+      "id": "2bc5f2af-ce15-4eb9-9e9d-d3d043fa6368",
       "comment": "",
       "command": "waitForElementVisible",
       "target": "css=h2.text-2xl:nth-child(2)",
       "targets": [],
       "value": "30000"
     }, {
-      "id": "bd041262-2e10-4e33-98b2-3c43b0b7390e",
+      "id": "9a0f8e05-235b-44ea-a385-dde2bc3a4725",
       "comment": "",
       "command": "waitForElementVisible",
       "target": "css=.inline-flex > span",
       "targets": [],
       "value": "30000"
     }, {
-      "id": "ac1b2998-b279-4771-9434-6cf8416d3841",
+      "id": "fb6fc02a-9cab-4490-a584-94d135197850",
       "comment": "",
       "command": "click",
       "target": "css=.inline-flex > span",
@@ -184,21 +191,28 @@
       ],
       "value": ""
     }, {
-      "id": "b66ae945-7220-4372-a3b9-f7956c5971a4",
+      "id": "10a3cc9c-cfee-4dc3-895d-73685bf21f4a",
+      "comment": "",
+      "command": "pause",
+      "target": "",
+      "targets": [],
+      "value": "3000"
+    }, {
+      "id": "723b35bf-c734-4e34-bb9e-4eb6aa9ab16b",
       "comment": "",
       "command": "waitForElementVisible",
       "target": "css=.tracking-tight",
       "targets": [],
       "value": "30000"
     }, {
-      "id": "ba3992d2-9eca-410f-a836-e8786b31b99b",
+      "id": "ba0b947a-bb74-4ad4-a7aa-c63195b7ae08",
       "comment": "",
       "command": "waitForElementVisible",
       "target": "css=.inline-flex > span",
       "targets": [],
       "value": "30000"
     }, {
-      "id": "9544e8ae-caed-4962-9867-12b965b540a5",
+      "id": "d2fcd511-3d14-4dc4-b5fd-c93a527c2258",
       "comment": "",
       "command": "click",
       "target": "css=.inline-flex > span",
@@ -209,10 +223,17 @@
       ],
       "value": ""
     }, {
-      "id": "58eb5b77-7a0f-4c25-9ca0-2f7dcf985d93",
+      "id": "6891bee2-0fdf-41ad-b419-d9987236b6f0",
+      "comment": "",
+      "command": "pause",
+      "target": "",
+      "targets": [],
+      "value": "3000"
+    }, {
+      "id": "4171800e-fd59-4620-87be-204167de78a5",
       "comment": "",
       "command": "waitForElementVisible",
-      "target": "css=.sm\\:mt-8",
+      "target": "css=.text-5xl",
       "targets": [],
       "value": "30000"
     }]
