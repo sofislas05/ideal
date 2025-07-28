@@ -25,7 +25,7 @@ jobs:
           cache: 'pnpm'
 
       - name: Install project dependencies
-        run: pnpm install --frozen-lockfile # pnpm ya está disponible y en el PATH
+        run: pnpm install --no-frozen-lockfile
 
       - name: Run Selenium IDE UI Tests
         run: pnpm run test:ui
