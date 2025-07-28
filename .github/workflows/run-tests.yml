@@ -32,12 +32,11 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y google-chrome-stable
 
-      # Set up a virtual display for Chrome with a large resolution
+      # Set up a virtual display for Chrome
       - name: Set up virtual display
         run: |
           sudo apt-get install -y xvfb
-          # Start Xvfb with a large resolution (1920x1080)
-          Xvfb :99 -screen 0 1920x1080x24 &
+          Xvfb :99 &
           echo "DISPLAY=:99" >> $GITHUB_ENV
 
       # Start the Astro development server
@@ -52,28 +51,35 @@ jobs:
       - name: Run Selenium IDE UI Tests
         continue-on-error: true  # Add this to prevent workflow failure
         run: |
-          # Start with a clean environment
-          pkill -f chrome || true
-          rm -rf /tmp/chrome-user-data
           mkdir -p /tmp/chrome-user-data
-
-          # Set a longer wait timeout and more stable Chrome options
-          export NODE_OPTIONS=--max_old_space_size=4096
+          # Add incognito mode and disable caching to reduce state persistence
+          CHROME_OPTIONS='browserName=chrome goog:chromeOptions.args=[--no-sandbox,--disable-dev-shm-usage,--user-data-dir=/tmp/chrome-user-data,--window-size=1920,1080,--incognito,--disable-application-cache]'
           
-          # Run desbordamiento-tablas and mantiene-filtro-semestre tests first (more reliable)
-          echo "Running more reliable tests first..."
-          CHROME_OPTIONS='browserName=chrome goog:chromeOptions.args=[--no-sandbox,--disable-dev-shm-usage,--user-data-dir=/tmp/chrome-user-data,--window-size=1920,1080,--start-maximized,--disable-application-cache,--disable-gpu]'
-          npx selenium-side-runner /tmp/modified-tests.side -t "desbordamiento-tablas|mantiene-filtro-semestre" -c "$CHROME_OPTIONS" --timeout-element=60000 || echo "Some tests failed"
+          # Run the tests that work first
+          echo "Running scroll-innecesario-new test..."
+          npx selenium-side-runner tests/dev-local/ideal-tests-local.side -t "scroll-innecesario-new" -c "$CHROME_OPTIONS" || echo "Test failed but continuing"
           
-          # Kill Chrome to ensure clean state
+          echo "Running mantiene-filtro-semestre test..."
+          npx selenium-side-runner tests/dev-local/ideal-tests-local.side -t "mantiene-filtro-semestre" -c "$CHROME_OPTIONS" || echo "Test failed but continuing"
+          
+          echo "Running desbordamiento-tablas test..."
+          npx selenium-side-runner tests/dev-local/ideal-tests-local.side -t "desbordamiento-tablas" -c "$CHROME_OPTIONS" || echo "Test failed but continuing"
+          
+          # Try back-button test with increased timeout and fresh browser session
+          echo "Running back-button test with extended timeouts..."
+          
+          # Kill any existing Chrome processes
           pkill -f chrome || true
           
-          # Create a fresh data directory for the more problematic tests
-          rm -rf /tmp/chrome-user-data
-          mkdir -p /tmp/chrome-user-data
+          # Create fresh user data directory
+          rm -rf /tmp/chrome-user-data-backbtn
+          mkdir -p /tmp/chrome-user-data-backbtn
           
-          # Run the less reliable tests with extra timeouts
-          echo "Running less reliable tests with extended timeouts..."
-          npx selenium-side-runner /tmp/modified-tests.side -t "scroll-innecesario-new|back-button" -c "$CHROME_OPTIONS" --timeout-element=90000 --timeout-pageLoad=60000 || echo "Some tests failed"
+          # Run with significantly extended timeout
+          BACKBTN_OPTIONS='browserName=chrome goog:chromeOptions.args=[--no-sandbox,--disable-dev-shm-usage,--user-data-dir=/tmp/chrome-user-data-backbtn,--window-size=1920,1080]'
+          npx selenium-side-runner tests/dev-local/ideal-tests-local.side -t "back-button" -c "$BACKBTN_OPTIONS" --timeout-element=60000 --timeout-pageLoad=60000 || echo "Back button test failed but continuing"
           
-          echo "Test run complete"
+          # Print summary of test results
+          echo "=========== TEST SUMMARY ==========="
+          echo "Tests executed. See logs for details."
+          echo "==================================="
