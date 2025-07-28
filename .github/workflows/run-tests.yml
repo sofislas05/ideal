@@ -47,23 +47,12 @@ jobs:
           echo "Waiting for server to start..."
           npx wait-on http://localhost:4321 -t 60000
 
-      # Run tests with a unique user data directory
+      # Run tests with a single command
       - name: Run Selenium IDE UI Tests
         run: |
           mkdir -p /tmp/chrome-user-data
-          # Remove the --headless flag
-          CHROME_OPTIONS='browserName=chrome goog:chromeOptions.args=[--no-sandbox,--disable-dev-shm-usage,--user-data-dir=/tmp/chrome-user-data,--window-size=1920,1080]'
+          # Add extra flags to minimize state persistence
+          CHROME_OPTIONS='browserName=chrome goog:chromeOptions.args=[--no-sandbox,--disable-dev-shm-usage,--user-data-dir=/tmp/chrome-user-data,--window-size=1920,1080,--incognito,--disable-application-cache,--disk-cache-size=1]'
           
-          # Run the tests that work first
-          echo "Running scroll-innecesario-new test..."
-          npx selenium-side-runner tests/dev-local/ideal-tests-local.side -t "scroll-innecesario-new" -c "$CHROME_OPTIONS" || echo "Test failed but continuing"
-          
-          echo "Running mantiene-filtro-semestre test..."
-          npx selenium-side-runner tests/dev-local/ideal-tests-local.side -t "mantiene-filtro-semestre" -c "$CHROME_OPTIONS" || echo "Test failed but continuing"
-          
-          # Then add additional debugging for problematic tests
-          echo "Running back-button test with extended timeouts..."
-          npx selenium-side-runner tests/dev-local/ideal-tests-local.side -t "back-button" -c "$CHROME_OPTIONS" --timeout-element=30000 || echo "Test failed but continuing"
-          
-          echo "Running desbordamiento-tablas test..."
-          npx selenium-side-runner tests/dev-local/ideal-tests-local.side -t "desbordamiento-tablas" -c "$CHROME_OPTIONS" || echo "Test failed but continuing"
+          # Run all tests at once
+          npx selenium-side-runner tests/dev-local/ideal-tests-local.side -c "$CHROME_OPTIONS"
