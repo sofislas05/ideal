@@ -32,11 +32,12 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y google-chrome-stable
 
-      # Set up a virtual display for Chrome
+      # Set up a virtual display for Chrome with a large resolution
       - name: Set up virtual display
         run: |
           sudo apt-get install -y xvfb
-          Xvfb :99 &
+          # Start Xvfb with a large resolution (1920x1080)
+          Xvfb :99 -screen 0 1920x1080x24 &
           echo "DISPLAY=:99" >> $GITHUB_ENV
 
       # Start the Astro development server
@@ -59,16 +60,9 @@ jobs:
           # Set a longer wait timeout and more stable Chrome options
           export NODE_OPTIONS=--max_old_space_size=4096
           
-          # Add explicit waits to the test script
-          echo "Creating a modified copy of tests with longer wait times..."
-          cp tests/dev-local/Ideal-tests-local.side /tmp/modified-tests.side
-          
-          # Replace wait times in the test file (increase default wait to 30 seconds)
-          sed -i 's/"value": "30000"/"value": "60000"/g' /tmp/modified-tests.side
-          
           # Run desbordamiento-tablas and mantiene-filtro-semestre tests first (more reliable)
           echo "Running more reliable tests first..."
-          CHROME_OPTIONS='browserName=chrome goog:chromeOptions.args=[--no-sandbox,--disable-dev-shm-usage,--user-data-dir=/tmp/chrome-user-data,--window-size=1920,1080,--disable-application-cache,--disable-gpu]'
+          CHROME_OPTIONS='browserName=chrome goog:chromeOptions.args=[--no-sandbox,--disable-dev-shm-usage,--user-data-dir=/tmp/chrome-user-data,--window-size=1920,1080,--start-maximized,--disable-application-cache,--disable-gpu]'
           npx selenium-side-runner /tmp/modified-tests.side -t "desbordamiento-tablas|mantiene-filtro-semestre" -c "$CHROME_OPTIONS" --timeout-element=60000 || echo "Some tests failed"
           
           # Kill Chrome to ensure clean state
