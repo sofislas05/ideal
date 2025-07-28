@@ -1,33 +1,29 @@
 name: Run UI Tests on Pull Request
 
 on:
-  # Este workflow se dispara cuando se abre o se actualiza un Pull Request
   pull_request:
-    # Solo se disparará si el PR está dirigido a la rama 'cardinal-quarter'
     branches:
       - cardinal-quarter
 
 jobs:
-  test_ui: # Nombre del job para tus tests de UI
-    runs-on: ubuntu-latest # El runner (máquina virtual) de GitHub Actions
+  test_ui:
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository # Paso 1: Clona el repositorio
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js (Version 22) and pnpm # Paso 2: Configura Node.js (v22) y habilita pnpm
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22 
-          cache: 'pnpm' 
+          node-version: 22
+          cache: 'pnpm'
 
-      # Paso 3 & 4 (Combinados): Instala pnpm globalmente e instala las dependencias del proyecto
-      - name: Install pnpm globally and project dependencies
-        run: |
-          npm install -g pnpm # Instala pnpm globalmente en el runner
-          # Instala las dependencias del proyecto, incluyendo selenium-side-runner y chromedriver
-          pnpm install --frozen-lockfile # Asumiendo que tu pnpm-lock.yaml está sincronizado con Node.js 22
+      - name: Enable Corepack
+        run: corepack enable
 
-      - name: Run Selenium IDE UI Tests # Paso 5: Ejecuta tus tests de UI
-        # Llama al script 'test:ui' definido en tu package.json
+      - name: Install project dependencies
+        run: pnpm install --frozen-lockfile # pnpm ya está disponible y en el PATH
+
+      - name: Run Selenium IDE UI Tests
         run: pnpm run test:ui
