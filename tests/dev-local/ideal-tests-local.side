@@ -89,6 +89,13 @@
     "id": "11d1c3a8-223a-41a7-b0ac-729d423c96fc",
     "name": "back-button",
     "commands": [{
+      "id": "68b39cd0-9d0e-458d-8f71-2728a02ebc62",
+      "comment": "Tuve que poner para este test problemático",
+      "command": "setWindowSize",
+      "target": "1920x1080",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "ee221b30-9cd4-4d44-a007-d4ef28fd695d",
       "comment": "",
       "command": "open",
@@ -96,7 +103,7 @@
       "targets": [],
       "value": ""
     }, {
-      "id": "74f0e90f-d337-492f-ae11-ad31c6f056a9",
+      "id": "e90b30b3-a04c-4a6c-a16a-d7eea8e21f7d",
       "comment": "",
       "command": "click",
       "target": "css=.flex:nth-child(3) > .flex > .font-semibold",
@@ -106,7 +113,7 @@
       ],
       "value": ""
     }, {
-      "id": "a6989b7b-3e47-46b1-ad3f-a09a6a8bc0a6",
+      "id": "656e9a30-de74-4e1a-bc6b-af0c874db811",
       "comment": "",
       "command": "click",
       "target": "css=.mr-1:nth-child(3) > .bg-blue-200",
@@ -117,18 +124,20 @@
       ],
       "value": ""
     }, {
-      "id": "9686f062-de41-4ee9-af97-669fefdc25c3",
+      "id": "4de3f35e-ee62-4b31-b8b4-8175e37a9bdc",
       "comment": "",
       "command": "click",
-      "target": "css=ul:nth-child(1) .font-medium",
+      "target": "linkText=Análisis 3",
       "targets": [
-        ["css=ul:nth-child(1) .font-medium", "css:finder"],
-        ["xpath=//span[2]", "xpath:position"],
-        ["xpath=//span[contains(.,'Análisis 3')]", "xpath:innerText"]
+        ["linkText=Análisis 3", "linkText"],
+        ["css=ul:nth-child(1) > .bg-gray-200", "css:finder"],
+        ["xpath=//a[contains(@href, '/posts/infor-A3')]", "xpath:href"],
+        ["xpath=//ul/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Análisis 3')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
-      "id": "09be7b0c-ea9e-4ab0-a032-73ec2d4c25af",
+      "id": "2b5fdd2f-69ee-4496-a1a5-3948c0b05012",
       "comment": "",
       "command": "click",
       "target": "css=.flex-row:nth-child(3)",
@@ -139,17 +148,17 @@
       ],
       "value": ""
     }, {
-      "id": "608f8f16-0fc7-4177-b495-ebae8a538636",
+      "id": "eb2de5c8-20e1-4a98-ace5-d4c34abf04de",
       "comment": "",
       "command": "waitForElementVisible",
-      "target": "css=.inline-flex",
+      "target": "css=.inline-flex > span",
       "targets": [],
       "value": "30000"
     }, {
-      "id": "9217ffb0-672d-44fd-90da-93b48ae999f7",
+      "id": "163026ac-00c8-424b-b5c0-a6f646f8c6a3",
       "comment": "",
       "command": "click",
-      "target": "css=.inline-flex",
+      "target": "css=.inline-flex > span",
       "targets": [
         ["css=.inline-flex > span", "css:finder"],
         ["xpath=//section/header/div/a/span", "xpath:position"],
@@ -157,31 +166,17 @@
       ],
       "value": ""
     }, {
-      "id": "a7f198cd-577e-4f8f-a11e-b20e8313a992",
-      "comment": "",
-      "command": "pause",
-      "target": "",
-      "targets": [],
-      "value": "500"
-    }, {
-      "id": "ca0dac94-9386-48ee-8aca-2875b6cbd349",
+      "id": "e9563f99-ccd8-497b-a175-654b7d343894",
       "comment": "",
       "command": "waitForElementVisible",
-      "target": "css=.flex-row:nth-child(3)",
+      "target": "css=.inline-flex > span",
       "targets": [],
       "value": "30000"
     }, {
-      "id": "392b43aa-a804-4d9d-92ca-7f5bd929855c",
-      "comment": "",
-      "command": "waitForElementVisible",
-      "target": "css=.inline-flex",
-      "targets": [],
-      "value": "30000"
-    }, {
-      "id": "53b21074-25c7-4719-9b92-07e2a2a3e96f",
+      "id": "62b42dde-8c28-4370-81ff-dfa2c98ca12b",
       "comment": "",
       "command": "click",
-      "target": "css=.inline-flex",
+      "target": "css=.inline-flex > span",
       "targets": [
         ["css=.inline-flex > span", "css:finder"],
         ["xpath=//body/div/a/span", "xpath:position"],
@@ -189,51 +184,23 @@
       ],
       "value": ""
     }, {
-      "id": "fabf5c69-a17e-4bfe-be3f-5a6418cd4a48",
-      "comment": "",
-      "command": "pause",
-      "target": "",
-      "targets": [],
-      "value": "500"
-    }, {
-      "id": "f5ec312c-4ecd-4483-b066-e2160e9824bc",
+      "id": "2eb796ab-84b1-47a6-9e7f-006b0fce0822",
       "comment": "",
       "command": "waitForElementVisible",
-      "target": "css=ul:nth-child(1) .font-medium",
+      "target": "css=.inline-flex > span",
       "targets": [],
       "value": "30000"
     }, {
-      "id": "0ce8fe76-da7f-4343-827a-dd8fa05f0978",
-      "comment": "",
-      "command": "waitForElementVisible",
-      "target": "css=.inline-flex",
-      "targets": [],
-      "value": "30000"
-    }, {
-      "id": "6a250f58-f098-4f5f-b7f0-d43ff4d7e5be",
+      "id": "80b8988f-1819-432f-b1b6-7d4aeb9c75fb",
       "comment": "",
       "command": "click",
-      "target": "css=.inline-flex",
+      "target": "css=.inline-flex > span",
       "targets": [
         ["css=.inline-flex > span", "css:finder"],
         ["xpath=//body/a/span", "xpath:position"],
         ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
       ],
       "value": ""
-    }, {
-      "id": "c88fddda-55ed-48db-b770-82c7dbe1f462",
-      "comment": "",
-      "command": "pause",
-      "target": "",
-      "targets": [],
-      "value": "500"
-    }, {
-      "id": "eab55678-d3fa-4b4b-969b-a28d642c33dd",
-      "comment": "",
-      "command": "waitForElementVisible",
-      "target": "css=.flex:nth-child(3) > .flex > .font-semibold",
-      "targets": [],
-      "value": "30000"
     }]
   }, {
     "id": "512669e2-8df4-4e87-986b-4302d0e3818a",
