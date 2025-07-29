@@ -96,7 +96,7 @@
       "targets": [],
       "value": ""
     }, {
-      "id": "5a4c4089-78d4-48f5-9123-88a2d6a4fcf1",
+      "id": "74f0e90f-d337-492f-ae11-ad31c6f056a9",
       "comment": "",
       "command": "click",
       "target": "css=.flex:nth-child(3) > .flex > .font-semibold",
@@ -106,7 +106,7 @@
       ],
       "value": ""
     }, {
-      "id": "ea4db822-d284-4e83-9bda-33f9e2565b0e",
+      "id": "a6989b7b-3e47-46b1-ad3f-a09a6a8bc0a6",
       "comment": "",
       "command": "click",
       "target": "css=.mr-1:nth-child(3) > .bg-blue-200",
@@ -117,20 +117,18 @@
       ],
       "value": ""
     }, {
-      "id": "674b1528-ebb9-451b-a1db-21093023cb29",
+      "id": "9686f062-de41-4ee9-af97-669fefdc25c3",
       "comment": "",
       "command": "click",
-      "target": "linkText=Análisis 3",
+      "target": "css=ul:nth-child(1) .font-medium",
       "targets": [
-        ["linkText=Análisis 3", "linkText"],
-        ["css=ul:nth-child(1) > .bg-gray-200", "css:finder"],
-        ["xpath=//a[contains(@href, '/posts/infor-A3')]", "xpath:href"],
-        ["xpath=//ul/a", "xpath:position"],
-        ["xpath=//a[contains(.,'Análisis 3')]", "xpath:innerText"]
+        ["css=ul:nth-child(1) .font-medium", "css:finder"],
+        ["xpath=//span[2]", "xpath:position"],
+        ["xpath=//span[contains(.,'Análisis 3')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
-      "id": "db261a05-10d2-43d4-8bde-667df8081f97",
+      "id": "09be7b0c-ea9e-4ab0-a032-73ec2d4c25af",
       "comment": "",
       "command": "click",
       "target": "css=.flex-row:nth-child(3)",
@@ -141,14 +139,14 @@
       ],
       "value": ""
     }, {
-      "id": "c4bc0bd2-54df-4eb7-b58f-2bb94317a485",
+      "id": "608f8f16-0fc7-4177-b495-ebae8a538636",
       "comment": "",
       "command": "waitForElementVisible",
       "target": "css=.inline-flex > span",
       "targets": [],
       "value": "30000"
     }, {
-      "id": "e860a865-06ca-40b9-a7d8-fab4e202358e",
+      "id": "9217ffb0-672d-44fd-90da-93b48ae999f7",
       "comment": "",
       "command": "click",
       "target": "css=.inline-flex > span",
@@ -159,28 +157,21 @@
       ],
       "value": ""
     }, {
-      "id": "f350b018-5ca6-41dd-8359-f04d978a1065",
-      "comment": "",
-      "command": "pause",
-      "target": "",
-      "targets": [],
-      "value": "3000"
-    }, {
-      "id": "2bc5f2af-ce15-4eb9-9e9d-d3d043fa6368",
+      "id": "ca0dac94-9386-48ee-8aca-2875b6cbd349",
       "comment": "",
       "command": "waitForElementVisible",
-      "target": "css=h2.text-2xl:nth-child(2)",
+      "target": "css=.flex-row:nth-child(3)",
       "targets": [],
       "value": "30000"
     }, {
-      "id": "9a0f8e05-235b-44ea-a385-dde2bc3a4725",
+      "id": "392b43aa-a804-4d9d-92ca-7f5bd929855c",
       "comment": "",
       "command": "waitForElementVisible",
       "target": "css=.inline-flex > span",
       "targets": [],
       "value": "30000"
     }, {
-      "id": "fb6fc02a-9cab-4490-a584-94d135197850",
+      "id": "53b21074-25c7-4719-9b92-07e2a2a3e96f",
       "comment": "",
       "command": "click",
       "target": "css=.inline-flex > span",
@@ -191,28 +182,21 @@
       ],
       "value": ""
     }, {
-      "id": "10a3cc9c-cfee-4dc3-895d-73685bf21f4a",
-      "comment": "",
-      "command": "pause",
-      "target": "",
-      "targets": [],
-      "value": "3000"
-    }, {
-      "id": "723b35bf-c734-4e34-bb9e-4eb6aa9ab16b",
+      "id": "f5ec312c-4ecd-4483-b066-e2160e9824bc",
       "comment": "",
       "command": "waitForElementVisible",
-      "target": "css=.tracking-tight",
+      "target": "css=ul:nth-child(1) .font-medium",
       "targets": [],
       "value": "30000"
     }, {
-      "id": "ba0b947a-bb74-4ad4-a7aa-c63195b7ae08",
+      "id": "0ce8fe76-da7f-4343-827a-dd8fa05f0978",
       "comment": "",
       "command": "waitForElementVisible",
       "target": "css=.inline-flex > span",
       "targets": [],
       "value": "30000"
     }, {
-      "id": "d2fcd511-3d14-4dc4-b5fd-c93a527c2258",
+      "id": "6a250f58-f098-4f5f-b7f0-d43ff4d7e5be",
       "comment": "",
       "command": "click",
       "target": "css=.inline-flex > span",
@@ -223,17 +207,10 @@
       ],
       "value": ""
     }, {
-      "id": "6891bee2-0fdf-41ad-b419-d9987236b6f0",
-      "comment": "",
-      "command": "pause",
-      "target": "",
-      "targets": [],
-      "value": "3000"
-    }, {
-      "id": "4171800e-fd59-4620-87be-204167de78a5",
+      "id": "eab55678-d3fa-4b4b-969b-a28d642c33dd",
       "comment": "",
       "command": "waitForElementVisible",
-      "target": "css=.text-5xl",
+      "target": "css=.flex:nth-child(3) > .flex > .font-semibold",
       "targets": [],
       "value": "30000"
     }]
