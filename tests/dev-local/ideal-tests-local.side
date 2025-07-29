@@ -96,23 +96,128 @@
       "targets": [],
       "value": ""
     }, {
-      "id": "1124ab5e-dc0f-4e22-b925-c58cc42b25c6",
+      "id": "02b8ab93-6838-4a52-9bf5-2c21f039fc05",
       "comment": "",
       "command": "click",
-      "target": "css=.items-center:nth-child(1) > .flex > .font-semibold",
+      "target": "css=.flex:nth-child(3) > .flex > .font-semibold",
       "targets": [
-        ["css=.items-center:nth-child(1) > .flex > .font-semibold", "css:finder"],
-        ["xpath=//span[2]", "xpath:position"]
+        ["css=.flex:nth-child(3) > .flex > .font-semibold", "css:finder"],
+        ["xpath=//a[3]/span/span[2]", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "6b7c1a90-754c-42b2-9be8-9fe3bf9c2e77",
+      "id": "7207879a-a149-45cc-9da7-de5231f9560e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.mr-1:nth-child(3) > .bg-blue-200",
+      "targets": [
+        ["css=.mr-1:nth-child(3) > .bg-blue-200", "css:finder"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'3')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3a0928de-67a1-4f7c-8df4-25c70209e7a2",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Análisis 3",
+      "targets": [
+        ["linkText=Análisis 3", "linkText"],
+        ["css=ul:nth-child(1) > .bg-gray-200", "css:finder"],
+        ["xpath=//a[contains(@href, '/posts/infor-A3')]", "xpath:href"],
+        ["xpath=//ul/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Análisis 3')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f9384920-5536-452e-bf43-9081d87e667d",
       "comment": "",
       "command": "click",
       "target": "css=.inline-flex > span",
       "targets": [
         ["css=.inline-flex > span", "css:finder"],
-        ["xpath=//body/a/span", "xpath:position"],
+        ["xpath=//body/div/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4f92294d-5fb6-42ad-a40a-5f65d17eab65",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Física 3",
+      "targets": [
+        ["linkText=Física 3", "linkText"],
+        ["css=ul:nth-child(2) > .bg-gray-200", "css:finder"],
+        ["xpath=//a[contains(@href, '/posts/infor-F3')]", "xpath:href"],
+        ["xpath=//ul[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Física 3')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7f01ba66-9385-4abf-b9de-c0a505ca25f5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inline-flex > span",
+      "targets": [
+        ["css=.inline-flex > span", "css:finder"],
+        ["xpath=//body/div/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "99c9fba3-57ad-4ec6-8ac5-bfabc4975a0f",
+      "comment": "",
+      "command": "click",
+      "target": "css=ul:nth-child(5) .font-medium",
+      "targets": [
+        ["css=ul:nth-child(5) .font-medium", "css:finder"],
+        ["xpath=//ul[5]/a/div/span[2]", "xpath:position"],
+        ["xpath=//span[contains(.,'Paradigmas')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "02d422fc-d113-481f-aa4e-88f1a33fad37",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inline-flex > span",
+      "targets": [
+        ["css=.inline-flex > span", "css:finder"],
+        ["xpath=//body/div/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "decedd73-c968-4855-a10a-63f150cd6c10",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Diseño Digital",
+      "targets": [
+        ["linkText=Diseño Digital", "linkText"],
+        ["css=ul:nth-child(4) > .bg-gray-200", "css:finder"],
+        ["xpath=//a[contains(@href, '/posts/infor-Dd')]", "xpath:href"],
+        ["xpath=//ul[4]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Diseño Digital')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "be91cf33-56d4-4aa6-9b50-966c8e73207e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flex-row",
+      "targets": [
+        ["css=.flex-row", "css:finder"],
+        ["xpath=//a[contains(@href, '/posts/primera-mesa-diseno-2024')]", "xpath:href"],
+        ["xpath=//ul/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a7fccf34-8514-4904-9141-986f188bd3db",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inline-flex > span",
+      "targets": [
+        ["css=.inline-flex > span", "css:finder"],
+        ["xpath=//section/header/div/a/span", "xpath:position"],
         ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
       ],
       "value": ""
