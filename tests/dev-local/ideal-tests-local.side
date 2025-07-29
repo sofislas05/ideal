@@ -142,20 +142,27 @@
       "id": "608f8f16-0fc7-4177-b495-ebae8a538636",
       "comment": "",
       "command": "waitForElementVisible",
-      "target": "css=.inline-flex > span",
+      "target": "css=.inline-flex",
       "targets": [],
       "value": "30000"
     }, {
       "id": "9217ffb0-672d-44fd-90da-93b48ae999f7",
       "comment": "",
       "command": "click",
-      "target": "css=.inline-flex > span",
+      "target": "css=.inline-flex",
       "targets": [
         ["css=.inline-flex > span", "css:finder"],
         ["xpath=//section/header/div/a/span", "xpath:position"],
         ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
       ],
       "value": ""
+    }, {
+      "id": "a7f198cd-577e-4f8f-a11e-b20e8313a992",
+      "comment": "",
+      "command": "pause",
+      "target": "",
+      "targets": [],
+      "value": "500"
     }, {
       "id": "ca0dac94-9386-48ee-8aca-2875b6cbd349",
       "comment": "",
@@ -167,20 +174,27 @@
       "id": "392b43aa-a804-4d9d-92ca-7f5bd929855c",
       "comment": "",
       "command": "waitForElementVisible",
-      "target": "css=.inline-flex > span",
+      "target": "css=.inline-flex",
       "targets": [],
       "value": "30000"
     }, {
       "id": "53b21074-25c7-4719-9b92-07e2a2a3e96f",
       "comment": "",
       "command": "click",
-      "target": "css=.inline-flex > span",
+      "target": "css=.inline-flex",
       "targets": [
         ["css=.inline-flex > span", "css:finder"],
         ["xpath=//body/div/a/span", "xpath:position"],
         ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
       ],
       "value": ""
+    }, {
+      "id": "fabf5c69-a17e-4bfe-be3f-5a6418cd4a48",
+      "comment": "",
+      "command": "pause",
+      "target": "",
+      "targets": [],
+      "value": "500"
     }, {
       "id": "f5ec312c-4ecd-4483-b066-e2160e9824bc",
       "comment": "",
@@ -192,20 +206,27 @@
       "id": "0ce8fe76-da7f-4343-827a-dd8fa05f0978",
       "comment": "",
       "command": "waitForElementVisible",
-      "target": "css=.inline-flex > span",
+      "target": "css=.inline-flex",
       "targets": [],
       "value": "30000"
     }, {
       "id": "6a250f58-f098-4f5f-b7f0-d43ff4d7e5be",
       "comment": "",
       "command": "click",
-      "target": "css=.inline-flex > span",
+      "target": "css=.inline-flex",
       "targets": [
         ["css=.inline-flex > span", "css:finder"],
         ["xpath=//body/a/span", "xpath:position"],
         ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
       ],
       "value": ""
+    }, {
+      "id": "c88fddda-55ed-48db-b770-82c7dbe1f462",
+      "comment": "",
+      "command": "pause",
+      "target": "",
+      "targets": [],
+      "value": "500"
     }, {
       "id": "eab55678-d3fa-4b4b-969b-a28d642c33dd",
       "comment": "",
@@ -418,7 +439,7 @@
     "name": "Default Suite",
     "persistSession": false,
     "parallel": false,
-    "timeout": 30000,
+    "timeout": 300,
     "tests": []
   }],
   "urls": ["https://ideal.fiuni.edu.py/", "http://localhost:4321/"],
