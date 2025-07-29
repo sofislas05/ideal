@@ -1,0 +1,434 @@
+{
+  "id": "5e641802-369b-4bd7-b414-f2f63632d0bb",
+  "version": "2.0",
+  "name": "Ideal-tests",
+  "url": "http://localhost:4321/",
+  "tests": [{
+    "id": "da296394-dc6e-4f2b-b3ba-0cb3256a8710",
+    "name": "scroll-innecesario-new",
+    "commands": [{
+      "id": "01caa680-659a-4565-9b3f-489627b4f2da",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:4321/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8e4c30a4-8f46-4e1b-afc4-efa7689c191d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flex:nth-child(3) > .flex > .font-semibold",
+      "targets": [
+        ["css=.flex:nth-child(3) > .flex > .font-semibold", "css:finder"],
+        ["xpath=//a[3]/span/span[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e525c380-ca7e-4827-b970-6c45baa8621a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.mr-1:nth-child(4) > .bg-blue-200",
+      "targets": [
+        ["css=.mr-1:nth-child(4) > .bg-blue-200", "css:finder"],
+        ["xpath=//div[4]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'4')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "99db153b-917c-4a1c-9b12-81cb548bc341",
+      "comment": "",
+      "command": "click",
+      "target": "css=ul:nth-child(4) .font-medium",
+      "targets": [
+        ["css=ul:nth-child(4) .font-medium", "css:finder"],
+        ["xpath=//ul[4]/a/div/span[2]", "xpath:position"],
+        ["xpath=//span[contains(.,'Redes de Computadoras 1')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d539d192-c4be-40ba-9f1c-4ffeea3f6bfa",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flex:nth-child(9) > .text-base",
+      "targets": [
+        ["css=.flex:nth-child(9) > .text-base", "css:finder"],
+        ["xpath=//a[9]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Resumen de Exposiciones de Redes Hasta Capa de Enlace')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "596a4f98-f7c6-424c-ab23-839f811c82d0",
+      "comment": "",
+      "command": "executeScript",
+      "target": "window.scrollTo(0, document.body.scrollHeight);",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9fe88232-6070-4131-bfff-dc6fdca88129",
+      "comment": "",
+      "command": "waitForElementVisible",
+      "target": "css=body > a",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "12c1038f-4534-4513-bb9d-42c7fd7fdcb6",
+      "comment": "",
+      "command": "executeScript",
+      "target": "var el = document.querySelector('body > a'); if (el) {   var computedMarginTop = parseFloat(window.getComputedStyle(el).marginTop);   if (computedMarginTop >= 0 && computedMarginTop <= 10) {     return 'in_range';   } else {     return 'out_of_range';  } } return 'ELEMENTO_NO_ENCONTRADO_O_NO_VISIBLE';",
+      "targets": [],
+      "value": "rangeCheckResult"
+    }, {
+      "id": "0f9c1b18-818d-4535-838a-b4d9c463c05d",
+      "comment": "",
+      "command": "assert",
+      "target": "rangeCheckResult",
+      "targets": [],
+      "value": "in_range"
+    }]
+  }, {
+    "id": "11d1c3a8-223a-41a7-b0ac-729d423c96fc",
+    "name": "back-button",
+    "commands": [{
+      "id": "ee221b30-9cd4-4d44-a007-d4ef28fd695d",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:4321/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "02b8ab93-6838-4a52-9bf5-2c21f039fc05",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flex:nth-child(3) > .flex > .font-semibold",
+      "targets": [
+        ["css=.flex:nth-child(3) > .flex > .font-semibold", "css:finder"],
+        ["xpath=//a[3]/span/span[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7207879a-a149-45cc-9da7-de5231f9560e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.mr-1:nth-child(3) > .bg-blue-200",
+      "targets": [
+        ["css=.mr-1:nth-child(3) > .bg-blue-200", "css:finder"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'3')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3a0928de-67a1-4f7c-8df4-25c70209e7a2",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Análisis 3",
+      "targets": [
+        ["linkText=Análisis 3", "linkText"],
+        ["css=ul:nth-child(1) > .bg-gray-200", "css:finder"],
+        ["xpath=//a[contains(@href, '/posts/infor-A3')]", "xpath:href"],
+        ["xpath=//ul/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Análisis 3')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f9384920-5536-452e-bf43-9081d87e667d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inline-flex > span",
+      "targets": [
+        ["css=.inline-flex > span", "css:finder"],
+        ["xpath=//body/div/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4f92294d-5fb6-42ad-a40a-5f65d17eab65",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Física 3",
+      "targets": [
+        ["linkText=Física 3", "linkText"],
+        ["css=ul:nth-child(2) > .bg-gray-200", "css:finder"],
+        ["xpath=//a[contains(@href, '/posts/infor-F3')]", "xpath:href"],
+        ["xpath=//ul[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Física 3')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7f01ba66-9385-4abf-b9de-c0a505ca25f5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inline-flex > span",
+      "targets": [
+        ["css=.inline-flex > span", "css:finder"],
+        ["xpath=//body/div/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "99c9fba3-57ad-4ec6-8ac5-bfabc4975a0f",
+      "comment": "",
+      "command": "click",
+      "target": "css=ul:nth-child(5) .font-medium",
+      "targets": [
+        ["css=ul:nth-child(5) .font-medium", "css:finder"],
+        ["xpath=//ul[5]/a/div/span[2]", "xpath:position"],
+        ["xpath=//span[contains(.,'Paradigmas')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "02d422fc-d113-481f-aa4e-88f1a33fad37",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inline-flex > span",
+      "targets": [
+        ["css=.inline-flex > span", "css:finder"],
+        ["xpath=//body/div/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "decedd73-c968-4855-a10a-63f150cd6c10",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Diseño Digital",
+      "targets": [
+        ["linkText=Diseño Digital", "linkText"],
+        ["css=ul:nth-child(4) > .bg-gray-200", "css:finder"],
+        ["xpath=//a[contains(@href, '/posts/infor-Dd')]", "xpath:href"],
+        ["xpath=//ul[4]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Diseño Digital')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "be91cf33-56d4-4aa6-9b50-966c8e73207e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flex-row",
+      "targets": [
+        ["css=.flex-row", "css:finder"],
+        ["xpath=//a[contains(@href, '/posts/primera-mesa-diseno-2024')]", "xpath:href"],
+        ["xpath=//ul/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a7fccf34-8514-4904-9141-986f188bd3db",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inline-flex > span",
+      "targets": [
+        ["css=.inline-flex > span", "css:finder"],
+        ["xpath=//section/header/div/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "512669e2-8df4-4e87-986b-4302d0e3818a",
+    "name": "desbordamiento-tablas",
+    "commands": [{
+      "id": "8f0656d9-03db-4db4-90bd-7fe8092509c8",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:4321/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "52bea66c-a75d-4f41-a9a4-9f8324b82a92",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flex:nth-child(3) > .flex > .font-semibold",
+      "targets": [
+        ["css=.flex:nth-child(3) > .flex > .font-semibold", "css:finder"],
+        ["xpath=//a[3]/span/span[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "892b88cb-2de8-418a-9d9f-13fc3938fc90",
+      "comment": "",
+      "command": "click",
+      "target": "css=.mr-1:nth-child(4) > .bg-blue-200",
+      "targets": [
+        ["css=.mr-1:nth-child(4) > .bg-blue-200", "css:finder"],
+        ["xpath=//div[4]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'4')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4ad5c926-7796-446b-95e5-9d01271dc2b4",
+      "comment": "",
+      "command": "click",
+      "target": "css=ul:nth-child(4) .font-medium",
+      "targets": [
+        ["css=ul:nth-child(4) .font-medium", "css:finder"],
+        ["xpath=//ul[4]/a/div/span[2]", "xpath:position"],
+        ["xpath=//span[contains(.,'Redes de Computadoras 1')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c7d3bda2-243f-4263-b53d-cc888e8e3641",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flex:nth-child(9) > .text-base",
+      "targets": [
+        ["css=.flex:nth-child(9) > .text-base", "css:finder"],
+        ["xpath=//a[9]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Resumen de Exposiciones de Redes Hasta Capa de Enlace')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0d962116-0018-452e-8aa8-cc65c5b8c6ba",
+      "comment": "",
+      "command": "executeScript",
+      "target": "return document.documentElement.scrollWidth - window.innerWidth;",
+      "targets": [],
+      "value": "scrollXDiff"
+    }, {
+      "id": "7fd6851b-e208-4af6-8721-e730c646d910",
+      "comment": "",
+      "command": "executeScript",
+      "target": "return Math.abs(window.scrollX) <= 20;",
+      "targets": [],
+      "value": "in_range"
+    }, {
+      "id": "5035ee8a-e0c3-45c3-ba19-3a99f7b9e8e7",
+      "comment": "",
+      "command": "assert",
+      "target": "in_range",
+      "targets": [],
+      "value": "true"
+    }]
+  }, {
+    "id": "b4e09c97-221d-48ad-abb0-35c74e3d2daa",
+    "name": "mantiene-filtro-semestre",
+    "commands": [{
+      "id": "59f10b3f-188d-4579-accd-865a723747c4",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:4321/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8e444b53-2a7d-48c0-86d0-b86d0defcb90",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Ingeniería Civil",
+      "targets": [
+        ["linkText=Ingeniería Civil", "linkText"],
+        ["css=.bg-gray-100:nth-child(1)", "css:finder"],
+        ["xpath=//a[contains(@href, '/posts/civil')]", "xpath:href"],
+        ["xpath=//section/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Ingeniería Civil')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "980322d5-9054-4898-9744-dfc9e6dd6bfb",
+      "comment": "",
+      "command": "click",
+      "target": "css=ul:nth-child(2) .font-medium",
+      "targets": [
+        ["css=ul:nth-child(2) .font-medium", "css:finder"],
+        ["xpath=//ul[2]/a/div/span[2]", "xpath:position"],
+        ["xpath=//span[contains(.,'Geología Aplicada')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "950e3fab-647a-439b-b268-947004a60c93",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inline-flex > span",
+      "targets": [
+        ["css=.inline-flex > span", "css:finder"],
+        ["xpath=//body/div/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "dc410cc9-9e66-4878-90ae-608603599270",
+      "comment": "",
+      "command": "click",
+      "target": "css=ul:nth-child(1) .font-medium",
+      "targets": [
+        ["css=ul:nth-child(1) .font-medium", "css:finder"],
+        ["xpath=//span[2]", "xpath:position"],
+        ["xpath=//span[contains(.,'Electrotecnia e Instalaciones Eléctricas')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f7f29be0-610a-491f-89ed-fe3bc1c547db",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inline-flex > span",
+      "targets": [
+        ["css=.inline-flex > span", "css:finder"],
+        ["xpath=//body/div/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1859847e-eecb-48fd-8cbe-0ee20960e589",
+      "comment": "",
+      "command": "click",
+      "target": "css=.mr-1:nth-child(4) > .bg-blue-200",
+      "targets": [
+        ["css=.mr-1:nth-child(4) > .bg-blue-200", "css:finder"],
+        ["xpath=//div[4]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'8')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6d413a62-d8f6-4a6b-93dd-631c815fcf3a",
+      "comment": "",
+      "command": "click",
+      "target": "css=ul:nth-child(5) .font-medium",
+      "targets": [
+        ["css=ul:nth-child(5) .font-medium", "css:finder"],
+        ["xpath=//ul[5]/a/div/span[2]", "xpath:position"],
+        ["xpath=//span[contains(.,'Tecnología de la Construcción')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "20fbdac7-793f-49b1-b288-aa0c48a46b04",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inline-flex > span",
+      "targets": [
+        ["css=.inline-flex > span", "css:finder"],
+        ["xpath=//body/div/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7d074d9c-6846-48a2-89cf-f0ddecbb8502",
+      "comment": "",
+      "command": "click",
+      "target": "css=ul:nth-child(4) .font-medium",
+      "targets": [
+        ["css=ul:nth-child(4) .font-medium", "css:finder"],
+        ["xpath=//ul[4]/a/div/span[2]", "xpath:position"],
+        ["xpath=//span[contains(.,'Planeamiento Urbano y Territorial')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "03dc2ee3-41f6-4fd8-809d-2ce35623b4eb",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inline-flex > span",
+      "targets": [
+        ["css=.inline-flex > span", "css:finder"],
+        ["xpath=//body/div/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Volver')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "5273da1b-4afb-4808-88dc-eb8fc643f9c8",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["https://ideal.fiuni.edu.py/", "http://localhost:4321/"],
+  "plugins": []
+}
